@@ -23,7 +23,7 @@ export default function () {
 		const controller = new AbortController()
 		const autoLogin = !!globalThis.BESZEL.AUTO_LOGIN
 		// keep the title neutral while automatic authentication may still succeed
-		document.title = autoLogin ? "Beszel" : `${t`Login`} / Beszel`
+		document.title = autoLogin ? "DockMon" : `${t`Login`} / DockMon`
 		loadLogin(
 			pb,
 			{
@@ -40,7 +40,7 @@ export default function () {
 					$authenticated.set(true)
 					return
 				}
-				document.title = `${t`Login`} / Beszel`
+				document.title = `${t`Login`} / DockMon`
 				setLogin(result)
 			})
 			.catch((error) => {

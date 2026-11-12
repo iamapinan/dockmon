@@ -198,8 +198,12 @@ msgid "After"
 msgstr "หลังจาก"
 
 #: src/components/routes/settings/heartbeat.tsx
-msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
-msgstr "หลังจากตั้งค่าตัวแปรสภาพแวดล้อมแล้ว ให้รีสตาร์ท DockMon hub เพื่อให้การเปลี่ยนแปลงมีผล"
+#~ msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
+#~ msgstr "หลังจากตั้งค่าตัวแปรสภาพแวดล้อมแล้ว ให้รีสตาร์ท DockMon hub เพื่อให้การเปลี่ยนแปลงมีผล"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "After setting the environment variables, restart your DockMon hub for changes to take effect."
+msgstr ""
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Agent"
@@ -352,12 +356,12 @@ msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "ต่ำกว่า {0}{1} ในช่วง {2, plural, other {# นาที}} ที่ผ่านมา"
 
 #: src/components/login/auth-form.tsx
-msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
-msgstr "รองรับ OpenID Connect และผู้ให้บริการพิสูจน์ตัวตน OAuth2 หลายราย"
+#~ msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
+#~ msgstr "รองรับ OpenID Connect และผู้ให้บริการพิสูจน์ตัวตน OAuth2 หลายราย"
 
 #: src/components/routes/settings/notifications.tsx
-msgid "Beszel uses <0>Shoutrrr</0> to integrate with popular notification services."
-msgstr "ใช้ <0>Shoutrrr</0> เพื่อเชื่อมต่อกับบริการแจ้งเตือนยอดนิยม"
+#~ msgid "Beszel uses <0>Shoutrrr</0> to integrate with popular notification services."
+#~ msgstr "ใช้ <0>Shoutrrr</0> เพื่อเชื่อมต่อกับบริการแจ้งเตือนยอดนิยม"
 
 #: src/components/add-system.tsx
 msgid "Binary"
@@ -842,6 +846,14 @@ msgstr "การใช้งานหน่วยความจำของ Do
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Docker Network I/O"
 msgstr "เครือข่าย I/O ของ Docker"
+
+#: src/components/login/auth-form.tsx
+msgid "DockMon supports OpenID Connect and many OAuth2 authentication providers."
+msgstr ""
+
+#: src/components/routes/settings/notifications.tsx
+msgid "DockMon uses <0>Shoutrrr</0> to integrate with popular notification services."
+msgstr ""
 
 #: src/components/command-palette.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2010,8 +2022,12 @@ msgid "Send a single heartbeat ping to verify your endpoint is working."
 msgstr "ส่ง ping heartbeat ครั้งเดียวเพื่อตรวจสอบว่า endpoint ทำงานได้หรือไม่"
 
 #: src/components/routes/settings/heartbeat.tsx
-msgid "Send periodic outbound pings to an external monitoring service so you can monitor Beszel without exposing it to the internet."
-msgstr "ส่ง ping ขาออกเป็นระยะไปยังบริการติดตามผลภายนอกเพื่อตรวจสอบสถานะของระบบโดยไม่ต้องเปิดเผยต่ออินเทอร์เน็ต"
+#~ msgid "Send periodic outbound pings to an external monitoring service so you can monitor Beszel without exposing it to the internet."
+#~ msgstr "ส่ง ping ขาออกเป็นระยะไปยังบริการติดตามผลภายนอกเพื่อตรวจสอบสถานะของระบบโดยไม่ต้องเปิดเผยต่ออินเทอร์เน็ต"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Send periodic outbound pings to an external monitoring service so you can monitor DockMon without exposing it to the internet."
+msgstr ""
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send test heartbeat"
@@ -2039,8 +2055,12 @@ msgid "Set percentage thresholds for meter colors."
 msgstr "ตั้งค่าเกณฑ์เปอร์เซ็นต์สำหรับสีของมิเตอร์"
 
 #: src/components/routes/settings/heartbeat.tsx
-msgid "Set the following environment variables on your Beszel hub to enable heartbeat monitoring:"
-msgstr "ตั้งค่าตัวแปรสภาพแวดล้อมต่อไปนี้บน DockMon hub เพื่อเปิดใช้งานการติดตาม heartbeat:"
+#~ msgid "Set the following environment variables on your Beszel hub to enable heartbeat monitoring:"
+#~ msgstr "ตั้งค่าตัวแปรสภาพแวดล้อมต่อไปนี้บน DockMon hub เพื่อเปิดใช้งานการติดตาม heartbeat:"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Set the following environment variables on your DockMon hub to enable heartbeat monitoring:"
+msgstr ""
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx

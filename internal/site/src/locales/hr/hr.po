@@ -203,8 +203,12 @@ msgid "After"
 msgstr "Nakon"
 
 #: src/components/routes/settings/heartbeat.tsx
-msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
-msgstr "Nakon postavljanja varijabli okruženja, ponovno pokrenite svoj Beszel hub kako bi promjene stupile na snagu."
+#~ msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
+#~ msgstr "Nakon postavljanja varijabli okruženja, ponovno pokrenite svoj Beszel hub kako bi promjene stupile na snagu."
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "After setting the environment variables, restart your DockMon hub for changes to take effect."
+msgstr ""
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Agent"
@@ -357,12 +361,12 @@ msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Ispod {0}{1} u posljednjih {2, plural, one {# minuti} few {# minute} other {# minuta}}"
 
 #: src/components/login/auth-form.tsx
-msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
-msgstr "Beszel podržava OpenID Connect i mnoge druge pružatelje OAuth2  autentifikacije."
+#~ msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
+#~ msgstr "Beszel podržava OpenID Connect i mnoge druge pružatelje OAuth2  autentifikacije."
 
 #: src/components/routes/settings/notifications.tsx
-msgid "Beszel uses <0>Shoutrrr</0> to integrate with popular notification services."
-msgstr "Beszel koristi <0>Shoutrrr</0> za integraciju s popularnim obavještajnim uslugama."
+#~ msgid "Beszel uses <0>Shoutrrr</0> to integrate with popular notification services."
+#~ msgstr "Beszel koristi <0>Shoutrrr</0> za integraciju s popularnim obavještajnim uslugama."
 
 #: src/components/add-system.tsx
 msgid "Binary"
@@ -847,6 +851,14 @@ msgstr "Iskorištenost Docker memorije"
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Docker Network I/O"
 msgstr "Docker mrežni I/O"
+
+#: src/components/login/auth-form.tsx
+msgid "DockMon supports OpenID Connect and many OAuth2 authentication providers."
+msgstr ""
+
+#: src/components/routes/settings/notifications.tsx
+msgid "DockMon uses <0>Shoutrrr</0> to integrate with popular notification services."
+msgstr ""
 
 #: src/components/command-palette.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2015,8 +2027,12 @@ msgid "Send a single heartbeat ping to verify your endpoint is working."
 msgstr "Pošaljite jedan heartbeat ping kako biste provjerili radi li vaša krajnja točka."
 
 #: src/components/routes/settings/heartbeat.tsx
-msgid "Send periodic outbound pings to an external monitoring service so you can monitor Beszel without exposing it to the internet."
-msgstr "Šaljite povremene odlazne pingove vanjskoj usluzi nadzora kako biste mogli nadzirati Beszel bez izlaganja internetu."
+#~ msgid "Send periodic outbound pings to an external monitoring service so you can monitor Beszel without exposing it to the internet."
+#~ msgstr "Šaljite povremene odlazne pingove vanjskoj usluzi nadzora kako biste mogli nadzirati Beszel bez izlaganja internetu."
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Send periodic outbound pings to an external monitoring service so you can monitor DockMon without exposing it to the internet."
+msgstr ""
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send test heartbeat"
@@ -2044,8 +2060,12 @@ msgid "Set percentage thresholds for meter colors."
 msgstr "Postavite pragove postotka za boje mjerača."
 
 #: src/components/routes/settings/heartbeat.tsx
-msgid "Set the following environment variables on your Beszel hub to enable heartbeat monitoring:"
-msgstr "Postavite sljedeće varijable okruženja na svom Beszel hubu kako biste omogućili nadzor heartbeata:"
+#~ msgid "Set the following environment variables on your Beszel hub to enable heartbeat monitoring:"
+#~ msgstr "Postavite sljedeće varijable okruženja na svom Beszel hubu kako biste omogućili nadzor heartbeata:"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Set the following environment variables on your DockMon hub to enable heartbeat monitoring:"
+msgstr ""
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx

@@ -1,14 +1,21 @@
 {
-	"name": "Beszel",
+	"name": "DockMon",
+	"short_name": "DockMon",
+	"description": "Lightweight server and Docker container monitoring platform",
 	"icons": [
 		{
 			"src": "icon.png",
 			"sizes": "512x512",
 			"type": "image/png"
+		},
+		{
+			"src": "icon.svg",
+			"sizes": "any",
+			"type": "image/svg+xml"
 		}
 	],
-  "start_url": "../",
+	"start_url": "../",
 	"display": "standalone",
-	"background_color": "#202225",
-	"theme_color": "#202225"
+	"background_color": "#0f172a",
+	"theme_color": "#0f172a"
 }
