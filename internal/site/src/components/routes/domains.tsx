@@ -225,8 +225,8 @@ export default function Domains() {
 
 	return (
 		<div className="space-y-6 pb-12">
-			{/* Top Header */}
-			<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+			{/* Top Header & Toolbar */}
+			<div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
 				<div>
 					<h1 className="text-2xl font-bold tracking-tight flex items-center gap-2">
 						<Globe className="h-6 w-6 text-primary" />
@@ -236,7 +236,29 @@ export default function Domains() {
 						Real-time HTTP health, latency, SSL expiration monitoring, and Cloudflare DNS server mapping.
 					</p>
 				</div>
-				<div className="flex items-center gap-2">
+				<div className="flex flex-wrap items-center gap-2">
+					{/* Host / Server Select Box on Toolbar */}
+					<div className="flex items-center gap-1.5 bg-muted/60 px-2.5 py-1 rounded-lg border border-border/60">
+						<Server className="h-3.5 w-3.5 text-primary shrink-0" />
+						<select
+							className="h-7 pl-1.5 pr-4 rounded-md bg-background text-xs font-medium border border-input focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer max-w-[200px] sm:max-w-[260px] truncate"
+							value={selectedServerId}
+							onChange={(e) => setSelectedServerId(e.target.value)}
+							aria-label="Select Host / Server"
+						>
+							<option value="all">🌐 All Servers ({domains.length} domains)</option>
+							{systems.map((s) => {
+								const domainCount = domains.filter((d) => d.serverId === s.id || (d.serverName && d.serverName === s.name)).length
+								const cfCount = serverDomainsMap[s.id]?.count || 0
+								return (
+									<option key={s.id} value={s.id}>
+										{s.name} ({s.host}) — {domainCount} monitors{cfCount > 0 ? ` • ${cfCount} CF` : ""}
+									</option>
+								)
+							})}
+						</select>
+					</div>
+
 					<Button
 						variant="outline"
 						className="gap-2 border-amber-500/30 hover:border-amber-500 text-amber-500 hover:text-amber-400"
@@ -250,56 +272,6 @@ export default function Domains() {
 						Add Domain
 					</Button>
 				</div>
-			</div>
-
-			{/* Server Selector Bar */}
-			<div className="flex flex-wrap items-center gap-2 p-2.5 rounded-xl border bg-card/60 backdrop-blur">
-				<div className="text-xs font-semibold text-muted-foreground flex items-center gap-1.5 px-2">
-					<Server className="h-3.5 w-3.5 text-primary" />
-					<span>Filter by Server:</span>
-				</div>
-				<Button
-					variant={selectedServerId === "all" ? "default" : "outline"}
-					size="sm"
-					className="h-7 text-xs gap-1.5"
-					onClick={() => setSelectedServerId("all")}
-				>
-					<Globe className="h-3 w-3" />
-					All Servers & Domains
-				</Button>
-				{systems.map((s) => {
-					const cfCount = serverDomainsMap[s.id]?.count || 0
-					const isSelected = selectedServerId === s.id
-					return (
-						<Button
-							key={s.id}
-							variant={isSelected ? "default" : "outline"}
-							size="sm"
-							className={`h-7 text-xs gap-1.5 ${isSelected ? "" : "border-border/70"}`}
-							onClick={() => setSelectedServerId(s.id)}
-						>
-							<span
-								className={`h-2 w-2 rounded-full ${
-									s.status === "up" ? "bg-emerald-500" : "bg-red-500"
-								}`}
-							/>
-							<span className="font-medium">{s.name}</span>
-							<span className="text-[10px] text-muted-foreground font-mono">({s.host})</span>
-							{cfCount > 0 && (
-								<span
-									className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
-										isSelected
-											? "bg-primary-foreground/20 text-primary-foreground"
-											: "bg-amber-500/15 text-amber-500 border border-amber-500/20"
-									}`}
-									title={`${cfCount} domain(s) in Cloudflare point to this server`}
-								>
-									{cfCount} CF
-								</span>
-							)}
-						</Button>
-					)
-				})}
 			</div>
 
 			{/* Cloudflare Host Domains Banner (when a server is selected) */}
