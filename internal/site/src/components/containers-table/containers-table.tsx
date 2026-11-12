@@ -28,7 +28,7 @@ import { Sheet, SheetTitle, SheetHeader, SheetContent, SheetDescription } from "
 import { Dialog, DialogContent, DialogTitle } from "../ui/dialog"
 import { Button } from "@/components/ui/button"
 import { $allSystemsById } from "@/lib/stores"
-import { LoaderCircleIcon, MaximizeIcon, RefreshCwIcon, XIcon } from "lucide-react"
+import { LoaderCircleIcon, MaximizeIcon, RefreshCwIcon, XIcon, PlayIcon, SquareIcon, RotateCwIcon } from "lucide-react"
 import { Separator } from "../ui/separator"
 import { $router, Link } from "../router"
 import { listenKeys } from "nanostores"
@@ -41,9 +41,10 @@ const syntaxTheme = "github-dark-dimmed"
 export default function ContainersTable({ systemId }: { systemId?: string }) {
 	const loadTime = Date.now()
 	const [data, setData] = useState<ContainerRecord[] | undefined>(undefined)
+	const [actionLoading, setActionLoading] = useState<Record<string, boolean>>({})
 	const [sorting, setSorting] = useBrowserStorage<SortingState>(
 		`sort-c-${systemId ? 1 : 0}`,
-		[{ id: systemId ? "name" : "system", desc: false }],
+		[{ id: systemId && systemId !== "all" ? "name" : "system", desc: false }],
 		sessionStorage
 	)
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -66,65 +67,130 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 	const [globalFilter, setGlobalFilter] = useState("")
 	const { pagination, onPaginationChange, resetPageIndex } = usePagination()
 
-	useEffect(() => {
-		function fetchData(systemId?: string) {
-			pb.collection<ContainerRecord>("containers")
-				.getList(0, 2000, {
-					fields: "id,name,image,updatable,ports,cpu,memory,net,health,status,system,updated",
-					filter: systemId ? pb.filter("system={:system}", { system: systemId }) : undefined,
-				})
-				.then(({ items }) => {
-					if (items.length === 0) {
-						setData((curItems) => {
-							if (systemId) {
-								return curItems?.filter((item) => item.system !== systemId) ?? []
-							}
-							return []
-						})
-						return
+	const handleAction = async (container: ContainerRecord, action: "restart" | "start" | "stop") => {
+		setActionLoading((prev) => ({ ...prev, [container.id]: true }))
+		try {
+			await pb.send("/api/beszel/containers/action", {
+				method: "POST",
+				body: {
+					system: container.system,
+					container: container.id,
+					action,
+				},
+			})
+			setData((cur) =>
+				cur?.map((c) => {
+					if (c.id === container.id) {
+						return {
+							...c,
+							status: action === "restart" ? "Up (restarting...)" : action === "start" ? "Up" : "Exited",
+						}
 					}
-					setData((curItems) => {
-						const lastUpdated = Math.max(items[0].updated, items.at(-1)?.updated ?? 0)
-						const containerIds = new Set()
-						const newItems: ContainerRecord[] = []
-						for (const item of items) {
-							if (Math.abs(lastUpdated - item.updated) < 70_000) {
-								containerIds.add(item.id)
-								newItems.push(item)
-							}
-						}
-						for (const item of curItems ?? []) {
-							if (!containerIds.has(item.id) && lastUpdated - item.updated < 70_000) {
-								newItems.push(item)
-							}
-						}
-						return newItems
-					})
+					return c
 				})
+			)
+			setTimeout(() => {
+				fetchData(systemId)
+			}, 1500)
+		} catch (err: any) {
+			alert(`Action '${action}' failed: ${err.message || err}`)
+		} finally {
+			setActionLoading((prev) => ({ ...prev, [container.id]: false }))
+		}
+	}
+
+	const fetchData = async (sysId?: string) => {
+		const isLocalOnly = sysId === "local"
+		const isRemoteOnly = sysId && sysId !== "all" && sysId !== "local"
+
+		let remoteItems: ContainerRecord[] = []
+		let localItems: ContainerRecord[] = []
+
+		if (!isLocalOnly) {
+			try {
+				const res = await pb.collection<ContainerRecord>("containers").getList(0, 2000, {
+					fields: "id,name,image,updatable,ports,cpu,memory,net,health,status,system,updated",
+					filter: isRemoteOnly ? pb.filter("system={:system}", { system: sysId }) : undefined,
+				})
+				remoteItems = res.items || []
+			} catch (err) {
+				console.error("Failed to fetch remote containers", err)
+			}
 		}
 
+		if (!isRemoteOnly) {
+			try {
+				const localRes = await pb.send<any[]>("/api/dockmon/docker/containers", {})
+				if (Array.isArray(localRes)) {
+					localItems = localRes.map((c: any) => {
+						const isRunning = c.State === "running"
+						const isPaused = c.State === "paused"
+						const statusText = c.Status || (isRunning ? "Up" : isPaused ? "Paused" : "Exited")
+						const portStr = (c.Ports || [])
+							.map((p: any) => (p.PublicPort ? `${p.PublicPort}:${p.PrivatePort}` : `${p.PrivatePort}/${p.Type}`))
+							.join(", ")
+
+						return {
+							id: c.Id,
+							system: "local",
+							name: (c.Names?.[0] || c.Id.slice(0, 12)).replace(/^\//, ""),
+							image: c.Image || "",
+							ports: portStr,
+							cpu: 0,
+							memory: 0,
+							net: 0,
+							health: (c.Status || "").toLowerCase().includes("healthy") ? 1 : 0,
+							status: statusText,
+							updated: Date.now(),
+						} as ContainerRecord
+					})
+				}
+			} catch (_) {
+				// Local Docker may be inactive or unavailable
+			}
+		}
+
+		setData([...remoteItems, ...localItems])
+	}
+
+	useEffect(() => {
 		// initial load
 		fetchData(systemId)
 
+		// periodic refresh
+		const timer = setInterval(() => fetchData(systemId), 15000)
+
 		// if no systemId, pull system containers after every system update
-		if (!systemId) {
-			return $allSystemsById.listen((_value, _oldValue, systemId) => {
-				// exclude initial load of systems
+		if (!systemId || systemId === "all") {
+			const unsubscribe = $allSystemsById.listen((_value, _oldValue, _changedSystemId) => {
 				if (Date.now() - loadTime > 500) {
 					fetchData(systemId)
 				}
 			})
+			return () => {
+				unsubscribe()
+				clearInterval(timer)
+			}
+		}
+
+		if (systemId === "local") {
+			return () => clearInterval(timer)
 		}
 
 		// if systemId, fetch containers after the system is updated
-		return listenKeys($allSystemsById, [systemId], (_newSystems) => {
+		const unsubscribeKeys = listenKeys($allSystemsById, [systemId], (_newSystems) => {
 			fetchData(systemId)
 		})
-	}, [])
+
+		return () => {
+			unsubscribeKeys()
+			clearInterval(timer)
+		}
+	}, [systemId])
 
 	const table = useReactTable({
 		data: data ?? [],
-		columns: containerChartCols.filter((col) => (systemId ? col.id !== "system" : true)),
+		columns: containerChartCols.filter((col) => (systemId && systemId !== "all" ? col.id !== "system" : true)),
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
@@ -142,6 +208,10 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 			sortUndefined: "last",
 			size: 100,
 			minSize: 0,
+		},
+		meta: {
+			onAction: handleAction,
+			actionLoading,
 		},
 		state: {
 			sorting,
@@ -235,6 +305,11 @@ const AllContainersTable = memo(function AllContainersTable({
 		activeContainer.current = container
 		setSheetOpen(true)
 	}
+	const meta = table.options.meta as
+		| {
+				onAction?: (container: ContainerRecord, action: "restart" | "start" | "stop") => Promise<void>
+		  }
+		| undefined
 
 	return (
 		<div className="max-w-full relative overflow-auto border rounded-md">
@@ -256,7 +331,12 @@ const AllContainersTable = memo(function AllContainersTable({
 					)}
 				</TableBody>
 			</table>
-			<ContainerSheet sheetOpen={sheetOpen} setSheetOpen={setSheetOpen} activeContainer={activeContainer} />
+			<ContainerSheet
+				sheetOpen={sheetOpen}
+				setSheetOpen={setSheetOpen}
+				activeContainer={activeContainer}
+				onAction={meta?.onAction}
+			/>
 		</div>
 	)
 })
@@ -306,16 +386,20 @@ function ContainerSheet({
 	sheetOpen,
 	setSheetOpen,
 	activeContainer,
+	onAction,
 }: {
 	sheetOpen: boolean
 	setSheetOpen: (open: boolean) => void
 	activeContainer: RefObject<ContainerRecord | null>
+	onAction?: (container: ContainerRecord, action: "restart" | "start" | "stop") => Promise<void>
 }) {
 	const [logsDisplay, setLogsDisplay] = useState<string>("")
 	const [infoDisplay, setInfoDisplay] = useState<string>("")
 	const [logsFullscreenOpen, setLogsFullscreenOpen] = useState<boolean>(false)
 	const [infoFullscreenOpen, setInfoFullscreenOpen] = useState<boolean>(false)
 	const [isRefreshingLogs, setIsRefreshingLogs] = useState<boolean>(false)
+	const [sheetActionLoading, setSheetActionLoading] = useState<string | null>(null)
+	const [sheetActionMsg, setSheetActionMsg] = useState<string | null>(null)
 	const logsContainerRef = useRef<HTMLDivElement>(null)
 
 	const container = activeContainer.current
@@ -347,9 +431,38 @@ function ContainerSheet({
 		}
 	}
 
+	const handleSheetAction = async (action: "restart" | "start" | "stop") => {
+		if (!container) return
+		setSheetActionLoading(action)
+		setSheetActionMsg(null)
+		try {
+			if (onAction) {
+				await onAction(container, action)
+			} else {
+				await pb.send("/api/beszel/containers/action", {
+					method: "POST",
+					body: {
+						system: container.system,
+						container: container.id,
+						action,
+					},
+				})
+			}
+			setSheetActionMsg(t`Action completed`)
+			setTimeout(() => {
+				refreshLogs()
+			}, 1000)
+		} catch (err: any) {
+			setSheetActionMsg(`Error: ${err.message || err}`)
+		} finally {
+			setSheetActionLoading(null)
+		}
+	}
+
 	useEffect(() => {
 		setLogsDisplay("")
 		setInfoDisplay("")
+		setSheetActionMsg(null)
 		if (!container) return
 		;(async () => {
 			const [logsHtml, infoHtml] = await Promise.all([getLogsHtml(container), getInfoHtml(container)])
@@ -360,6 +473,8 @@ function ContainerSheet({
 	}, [container])
 
 	if (!container) return null
+
+	const isRunning = (container.status || "").toLowerCase().startsWith("up")
 
 	return (
 		<>
@@ -383,24 +498,61 @@ function ContainerSheet({
 						<SheetTitle>{container.name}</SheetTitle>
 						<SheetDescription className="flex flex-wrap items-center gap-x-2 gap-y-1">
 							<Link className="hover:underline" href={getPagePath($router, "system", { id: container.system })}>
-								{$allSystemsById.get()[container.system]?.name ?? ""}
+								{$allSystemsById.get()[container.system]?.name ?? (container.system === "local" ? t`Local Docker` : container.system)}
 							</Link>
 							<Separator orientation="vertical" className="h-2.5 bg-muted-foreground opacity-70" />
 							{container.status}
 							<Separator orientation="vertical" className="h-2.5 bg-muted-foreground opacity-70" />
 							{container.image}
 							<Separator orientation="vertical" className="h-2.5 bg-muted-foreground opacity-70" />
-							{container.id}
-							{/* {container.ports && (
-								<>
-									<Separator orientation="vertical" className="h-2.5 bg-muted-foreground opacity-70" />
-									{container.ports}
-								</>
-							)} */}
-							{/* <Separator orientation="vertical" className="h-2.5 bg-muted-foreground opacity-70" />
-							{ContainerHealthLabels[container.health as ContainerHealth]} */}
+							{container.id.slice(0, 12)}
 						</SheetDescription>
 					</SheetHeader>
+
+					{/* Container Lifecycle Control Bar */}
+					<div className="flex flex-wrap items-center gap-2 mx-3 my-2 p-2 rounded-lg border bg-card/60 backdrop-blur">
+						<span className="text-xs font-semibold text-muted-foreground mr-1">{t`Control`}:</span>
+						{isRunning ? (
+							<>
+								<Button
+									variant="outline"
+									size="sm"
+									className="h-7 text-xs gap-1.5 border-amber-500/40 text-amber-500 hover:bg-amber-500/10 hover:text-amber-400"
+									disabled={!!sheetActionLoading}
+									onClick={() => handleSheetAction("restart")}
+								>
+									<RotateCwIcon className={cn("size-3.5", sheetActionLoading === "restart" && "animate-spin")} />
+									{t`Restart`}
+								</Button>
+								<Button
+									variant="outline"
+									size="sm"
+									className="h-7 text-xs gap-1.5 border-destructive/40 text-destructive hover:bg-destructive/10"
+									disabled={!!sheetActionLoading}
+									onClick={() => handleSheetAction("stop")}
+								>
+									<SquareIcon className={cn("size-3.5", sheetActionLoading === "stop" && "animate-spin")} />
+									{t`Stop`}
+								</Button>
+							</>
+						) : (
+							<Button
+								variant="outline"
+								size="sm"
+								className="h-7 text-xs gap-1.5 border-emerald-500/40 text-emerald-500 hover:bg-emerald-500/10 hover:text-emerald-400"
+								disabled={!!sheetActionLoading}
+								onClick={() => handleSheetAction("start")}
+							>
+								<PlayIcon className={cn("size-3.5", sheetActionLoading === "start" && "animate-spin")} />
+								{t`Start`}
+							</Button>
+						)}
+						{sheetActionMsg && (
+							<span className="text-xs font-medium text-muted-foreground ml-auto truncate max-w-[220px]" title={sheetActionMsg}>
+								{sheetActionMsg}
+							</span>
+						)}
+					</div>
 					<div className="px-3 pb-3 -mt-4 flex flex-col gap-3 h-full items-start">
 						<div className="flex items-center w-full">
 							<h3>{t`Logs`}</h3>

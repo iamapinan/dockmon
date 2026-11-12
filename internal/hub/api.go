@@ -3,8 +3,10 @@ package hub
 import (
 	"context"
 	"database/sql"
+	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"log/slog"
 	"net"
 	"net/http"
@@ -224,6 +226,8 @@ func (h *Hub) registerApiRoutes(se *core.ServeEvent) error {
 		apiAuth.GET("/containers/logs", h.getContainerLogs)
 		// get container info
 		apiAuth.GET("/containers/info", h.getContainerInfo)
+		// container lifecycle actions (start, stop, restart, etc.)
+		apiAuth.POST("/containers/action", h.containerAction)
 	}
 
 	// register DockMon routes
@@ -431,7 +435,42 @@ func (h *Hub) containerRequestHandler(e *core.RequestEvent, fetchFunc func(*syst
 	systemID := e.Request.URL.Query().Get("system")
 	containerID := e.Request.URL.Query().Get("container")
 
-	if systemID == "" || containerID == "" || !containerIDPattern.MatchString(containerID) {
+	if containerID == "" {
+		return e.BadRequestError("Invalid container parameter", nil)
+	}
+
+	// Handle local Docker engine requests directly
+	if systemID == "local" || systemID == "" {
+		if responseKey == "logs" {
+			tail := e.Request.URL.Query().Get("tail")
+			if tail == "" {
+				tail = "200"
+			}
+			endpoint := fmt.Sprintf("/containers/%s/logs?stdout=true&stderr=true&tail=%s&timestamps=true", containerID, tail)
+			resp, err := dockerDoRequest("GET", endpoint, nil)
+			if err != nil {
+				return e.BadRequestError("Failed to fetch local logs: "+err.Error(), err)
+			}
+			defer resp.Body.Close()
+			logsText := readDockerLogs(resp.Body)
+			return e.JSON(http.StatusOK, map[string]string{responseKey: logsText})
+		}
+		// inspect info
+		resp, err := dockerDoRequest("GET", fmt.Sprintf("/containers/%s/json", containerID), nil)
+		if err != nil {
+			return e.BadRequestError("Failed to inspect local container: "+err.Error(), err)
+		}
+		defer resp.Body.Close()
+		var data map[string]interface{}
+		_ = json.NewDecoder(resp.Body).Decode(&data)
+		if cfg, ok := data["Config"].(map[string]interface{}); ok {
+			delete(cfg, "Env")
+		}
+		infoBytes, _ := json.Marshal(data)
+		return e.JSON(http.StatusOK, map[string]string{responseKey: string(infoBytes)})
+	}
+
+	if !containerIDPattern.MatchString(containerID) {
 		return e.BadRequestError("Invalid system or container parameter", nil)
 	}
 
@@ -446,6 +485,87 @@ func (h *Hub) containerRequestHandler(e *core.RequestEvent, fetchFunc func(*syst
 	}
 
 	return e.JSON(http.StatusOK, map[string]string{responseKey: data})
+}
+
+// containerAction handles POST /api/beszel/containers/action requests
+func (h *Hub) containerAction(e *core.RequestEvent) error {
+	var req struct {
+		System    string `json:"system"`
+		Container string `json:"container"`
+		Action    string `json:"action"` // start, stop, restart, pause, unpause, remove
+	}
+	if err := e.BindBody(&req); err != nil {
+		return e.BadRequestError("Invalid payload", err)
+	}
+	if req.Container == "" || req.Action == "" {
+		return e.BadRequestError("Container and Action are required", nil)
+	}
+
+	switch req.Action {
+	case "start", "stop", "restart", "pause", "unpause", "remove", "kill":
+		// valid
+	default:
+		return e.BadRequestError("Unknown action: "+req.Action, nil)
+	}
+
+	// Local Docker container action
+	if req.System == "local" || req.System == "" {
+		var subPath string
+		var query string
+		var method = "POST"
+		switch req.Action {
+		case "start":
+			subPath = "/start"
+		case "stop":
+			subPath = "/stop"
+			query = "?t=10"
+		case "restart":
+			subPath = "/restart"
+			query = "?t=10"
+		case "pause":
+			subPath = "/pause"
+		case "unpause":
+			subPath = "/unpause"
+		case "kill":
+			subPath = "/kill"
+		case "remove":
+			method = "DELETE"
+			query = "?force=true&v=true"
+		}
+
+		resp, err := dockerDoRequest(method, fmt.Sprintf("/containers/%s%s%s", req.Container, subPath, query), nil)
+		if err != nil {
+			return e.BadRequestError("Local Docker error: "+err.Error(), err)
+		}
+		defer resp.Body.Close()
+		if resp.StatusCode >= 400 {
+			msg, _ := io.ReadAll(resp.Body)
+			return e.BadRequestError(fmt.Sprintf("Docker error (%d): %s", resp.StatusCode, string(msg)), nil)
+		}
+		return e.JSON(http.StatusOK, map[string]interface{}{
+			"success":   true,
+			"action":    req.Action,
+			"container": req.Container,
+			"system":    "local",
+		})
+	}
+
+	// Remote Agent container action
+	system, err := h.sm.GetSystem(req.System)
+	if err != nil || !system.HasUser(e.App, e.Auth) {
+		return e.NotFoundError("System not found", nil)
+	}
+
+	if err := system.ExecuteContainerAction(req.Container, req.Action); err != nil {
+		return e.BadRequestError(fmt.Sprintf("Remote container action failed: %s", err.Error()), err)
+	}
+
+	return e.JSON(http.StatusOK, map[string]interface{}{
+		"success":   true,
+		"action":    req.Action,
+		"container": req.Container,
+		"system":    req.System,
+	})
 }
 
 // getContainerLogs handles GET /api/beszel/containers/logs requests

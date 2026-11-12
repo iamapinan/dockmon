@@ -1047,6 +1047,57 @@ func decodeDockerLogStream(reader io.Reader, builder *strings.Builder, multiplex
 }
 
 // GetHostInfo fetches the system info from Docker
+// containerAction performs lifecycle actions (start, stop, restart, pause, unpause, kill, remove)
+func (dm *dockerManager) containerAction(ctx context.Context, containerID string, action string) error {
+	var method = http.MethodPost
+	var subPath string
+	var query url.Values
+
+	switch action {
+	case "start":
+		subPath = "start"
+	case "stop":
+		subPath = "stop"
+		query = url.Values{"t": []string{"10"}}
+	case "restart":
+		subPath = "restart"
+		query = url.Values{"t": []string{"10"}}
+	case "pause":
+		subPath = "pause"
+	case "unpause":
+		subPath = "unpause"
+	case "kill":
+		subPath = "kill"
+	case "remove":
+		method = http.MethodDelete
+		subPath = ""
+		query = url.Values{"force": []string{"true"}, "v": []string{"true"}}
+	default:
+		return fmt.Errorf("unsupported action: %s", action)
+	}
+
+	endpoint, err := buildDockerContainerEndpoint(containerID, subPath, query)
+	if err != nil {
+		return err
+	}
+	req, err := http.NewRequestWithContext(ctx, method, endpoint, nil)
+	if err != nil {
+		return err
+	}
+
+	resp, err := dm.client.Do(req)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode >= 400 {
+		body, _ := io.ReadAll(io.LimitReader(resp.Body, 1024))
+		return fmt.Errorf("docker error (%d): %s", resp.StatusCode, strings.TrimSpace(string(body)))
+	}
+	return nil
+}
+
 func (dm *dockerManager) GetHostInfo() (info container.HostInfo, err error) {
 	resp, err := dm.client.Get("http://localhost/info")
 	if err != nil {

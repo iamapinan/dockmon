@@ -87,6 +87,11 @@ func unmarshalLegacyResponse(resp common.AgentResponse, action common.WebSocketA
 		}
 		*d = *resp.String
 		return nil
+	case common.ContainerAction:
+		if d, ok := dest.(*string); ok && resp.String != nil {
+			*d = *resp.String
+		}
+		return nil
 	case common.GetSmartData:
 		switch d := dest.(type) {
 		case *map[string]smart.SmartData:

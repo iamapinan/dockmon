@@ -855,6 +855,17 @@ func (sys *System) FetchContainerLogsFromAgent(containerID string) (string, erro
 	return result, err
 }
 
+// ExecuteContainerAction executes a lifecycle action (start, stop, restart, etc.) on a container on the agent
+func (sys *System) ExecuteContainerAction(containerID string, action string) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
+	defer cancel()
+	var result string
+	return sys.request(ctx, common.ContainerAction, common.ContainerActionRequest{
+		ContainerID: containerID,
+		Action:      action,
+	}, &result)
+}
+
 // FetchSystemdInfoFromAgent fetches detailed systemd service information from the agent
 func (sys *System) FetchSystemdInfoFromAgent(serviceName string) (systemd.ServiceDetails, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)

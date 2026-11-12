@@ -30,6 +30,8 @@ const (
 	GetPackageUpdates
 	// Request recent logs for a systemd service from the agent.
 	GetSystemdLogs
+	// Perform action on container (start, stop, restart, etc.)
+	ContainerAction
 	// Add new actions here...
 )
 
@@ -90,4 +92,9 @@ type SystemdInfoRequest struct {
 
 type SystemdLogsRequest struct {
 	ServiceName string `cbor:"0,keyasint"`
+}
+
+type ContainerActionRequest struct {
+	ContainerID string `cbor:"0,keyasint"`
+	Action      string `cbor:"1,keyasint"`
 }

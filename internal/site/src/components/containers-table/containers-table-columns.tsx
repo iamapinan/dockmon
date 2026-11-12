@@ -12,6 +12,9 @@ import {
 	MemoryStickIcon,
 	ServerIcon,
 	ShieldCheckIcon,
+	RotateCwIcon,
+	SquareIcon,
+	PlayIcon,
 } from "lucide-react"
 import { EthernetIcon, HourglassIcon, SquareArrowRightEnterIcon } from "../ui/icons"
 import { Badge } from "../ui/badge"
@@ -218,6 +221,77 @@ export const containerChartCols: ColumnDef<ContainerRecord>[] = [
 		cell: ({ getValue }) => {
 			const timestamp = getValue() as number
 			return <span className="ms-1 tabular-nums">{hourWithSeconds(new Date(timestamp).toISOString())}</span>
+		},
+	},
+	{
+		id: "actions",
+		header: () => <span className="ms-1 text-xs font-semibold">{t`Actions`}</span>,
+		minSize: 85,
+		cell: ({ row, table }) => {
+			const container = row.original
+			const meta = table.options.meta as
+				| {
+						onAction?: (c: ContainerRecord, action: "restart" | "start" | "stop") => void
+						actionLoading?: Record<string, boolean>
+				  }
+				| undefined
+
+			const isLoading = !!meta?.actionLoading?.[container.id]
+			const statusLower = (container.status || "").toLowerCase()
+			const isRunning = statusLower.startsWith("up")
+
+			return (
+				<div className="flex items-center gap-1 ps-1" onClick={(e) => e.stopPropagation()}>
+					{isRunning ? (
+						<>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Button
+										variant="ghost"
+										size="icon"
+										className="h-7 w-7 text-amber-500 hover:text-amber-400 hover:bg-amber-500/10"
+										disabled={isLoading}
+										onClick={() => meta?.onAction?.(container, "restart")}
+									>
+										<RotateCwIcon className={cn("size-3.5", isLoading && "animate-spin")} />
+									</Button>
+								</TooltipTrigger>
+								<TooltipContent>{t`Restart container`}</TooltipContent>
+							</Tooltip>
+
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Button
+										variant="ghost"
+										size="icon"
+										className="h-7 w-7 text-destructive hover:text-red-400 hover:bg-destructive/10"
+										disabled={isLoading}
+										onClick={() => meta?.onAction?.(container, "stop")}
+									>
+										<SquareIcon className="size-3.5" />
+									</Button>
+								</TooltipTrigger>
+								<TooltipContent>{t`Stop container`}</TooltipContent>
+							</Tooltip>
+						</>
+					) : (
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<Button
+									variant="ghost"
+									size="icon"
+									className="h-7 w-7 text-emerald-500 hover:text-emerald-400 hover:bg-emerald-500/10"
+									disabled={isLoading}
+									onClick={() => meta?.onAction?.(container, "start")}
+								>
+									<PlayIcon className={cn("size-3.5", isLoading && "animate-spin")} />
+								</Button>
+							</TooltipTrigger>
+							<TooltipContent>{t`Start container`}</TooltipContent>
+						</Tooltip>
+					)}
+				</div>
+			)
 		},
 	},
 ]

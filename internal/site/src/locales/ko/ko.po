@@ -136,7 +136,12 @@ msgstr "30일"
 msgid "5 min"
 msgstr "5분"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Action completed"
+msgstr ""
+
 #. Table column
+#: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -596,6 +601,10 @@ msgstr "컨테이너"
 #: src/components/system-actions-button.tsx
 msgid "Continue"
 msgstr "계속"
+
+#: src/components/containers-table/containers-table.tsx
+msgid "Control"
+msgstr ""
 
 #: src/lib/utils.ts
 msgid "Copied to clipboard"
@@ -1308,6 +1317,10 @@ msgstr "로드 상태"
 msgid "Loading..."
 msgstr "로딩 중..."
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Local Docker"
+msgstr ""
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1880,6 +1893,14 @@ msgstr "응답"
 msgid "Response time monitoring from agents."
 msgstr "에이전트의 응답 시간을 모니터링합니다."
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Restart"
+msgstr ""
+
+#: src/components/containers-table/containers-table-columns.tsx
+msgid "Restart container"
+msgstr ""
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Restarts"
 msgstr "재시작 횟수"
@@ -2107,6 +2128,14 @@ msgstr "SMTP 설정"
 msgid "Sort By"
 msgstr "정렬 기준"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Start"
+msgstr ""
+
+#: src/components/containers-table/containers-table-columns.tsx
+msgid "Start container"
+msgstr ""
+
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -2127,6 +2156,14 @@ msgstr "상태"
 #: src/lib/alerts.ts
 msgid "Status"
 msgstr "상태"
+
+#: src/components/containers-table/containers-table.tsx
+msgid "Stop"
+msgstr ""
+
+#: src/components/containers-table/containers-table-columns.tsx
+msgid "Stop container"
+msgstr ""
 
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Sub State"

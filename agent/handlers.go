@@ -54,6 +54,7 @@ func NewHandlerRegistry() *HandlerRegistry {
 	registry.Register(common.CheckFingerprint, &CheckFingerprintHandler{})
 	registry.Register(common.GetContainerLogs, &GetContainerLogsHandler{})
 	registry.Register(common.GetContainerInfo, &GetContainerInfoHandler{})
+	registry.Register(common.ContainerAction, &ContainerActionHandler{})
 	registry.Register(common.GetSmartData, &GetSmartDataHandler{})
 	registry.Register(common.GetSystemdInfo, &GetSystemdInfoHandler{})
 	registry.Register(common.GetSystemdLogs, &GetSystemdLogsHandler{})
@@ -170,6 +171,31 @@ func (h *GetContainerInfoHandler) Handle(hctx *HandlerContext) error {
 	}
 
 	return hctx.SendResponse(string(info), hctx.RequestID)
+}
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+// ContainerActionHandler handles container lifecycle action requests
+type ContainerActionHandler struct{}
+
+func (h *ContainerActionHandler) Handle(hctx *HandlerContext) error {
+	if hctx.Agent.dockerManager == nil {
+		return hctx.SendResponse("docker manager not available", hctx.RequestID)
+	}
+
+	var req common.ContainerActionRequest
+	if err := cbor.Unmarshal(hctx.Request.Data, &req); err != nil {
+		return err
+	}
+
+	ctx := context.Background()
+	err := hctx.Agent.dockerManager.containerAction(ctx, req.ContainerID, req.Action)
+	if err != nil {
+		return err
+	}
+
+	return hctx.SendResponse("ok", hctx.RequestID)
 }
 
 ////////////////////////////////////////////////////////////////////////////

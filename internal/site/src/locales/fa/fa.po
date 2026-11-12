@@ -136,7 +136,12 @@ msgstr "۳۰ روز"
 msgid "5 min"
 msgstr "۵ دقیقه"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Action completed"
+msgstr ""
+
 #. Table column
+#: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -596,6 +601,10 @@ msgstr "کانتینرها"
 #: src/components/system-actions-button.tsx
 msgid "Continue"
 msgstr "ادامه"
+
+#: src/components/containers-table/containers-table.tsx
+msgid "Control"
+msgstr ""
 
 #: src/lib/utils.ts
 msgid "Copied to clipboard"
@@ -1308,6 +1317,10 @@ msgstr "وضعیت بارگذاری"
 msgid "Loading..."
 msgstr "در حال بارگذاری..."
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Local Docker"
+msgstr ""
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1880,6 +1893,14 @@ msgstr "پاسخ"
 msgid "Response time monitoring from agents."
 msgstr "پایش زمان پاسخ از ایجنت‌ها."
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Restart"
+msgstr ""
+
+#: src/components/containers-table/containers-table-columns.tsx
+msgid "Restart container"
+msgstr ""
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Restarts"
 msgstr "راه‌اندازی مجدد"
@@ -2107,6 +2128,14 @@ msgstr "تنظیمات SMTP"
 msgid "Sort By"
 msgstr "مرتب‌سازی بر اساس"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Start"
+msgstr ""
+
+#: src/components/containers-table/containers-table-columns.tsx
+msgid "Start container"
+msgstr ""
+
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -2127,6 +2156,14 @@ msgstr "وضعیت"
 #: src/lib/alerts.ts
 msgid "Status"
 msgstr "وضعیت"
+
+#: src/components/containers-table/containers-table.tsx
+msgid "Stop"
+msgstr ""
+
+#: src/components/containers-table/containers-table-columns.tsx
+msgid "Stop container"
+msgstr ""
 
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Sub State"

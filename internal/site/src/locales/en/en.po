@@ -131,7 +131,12 @@ msgstr "30 days"
 msgid "5 min"
 msgstr "5 min"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Action completed"
+msgstr "Action completed"
+
 #. Table column
+#: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -591,6 +596,10 @@ msgstr "Containers"
 #: src/components/system-actions-button.tsx
 msgid "Continue"
 msgstr "Continue"
+
+#: src/components/containers-table/containers-table.tsx
+msgid "Control"
+msgstr "Control"
 
 #: src/lib/utils.ts
 msgid "Copied to clipboard"
@@ -1303,6 +1312,10 @@ msgstr "Load state"
 msgid "Loading..."
 msgstr "Loading..."
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Local Docker"
+msgstr "Local Docker"
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1875,6 +1888,14 @@ msgstr "Response"
 msgid "Response time monitoring from agents."
 msgstr "Response time monitoring from agents."
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Restart"
+msgstr "Restart"
+
+#: src/components/containers-table/containers-table-columns.tsx
+msgid "Restart container"
+msgstr "Restart container"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Restarts"
 msgstr "Restarts"
@@ -2102,6 +2123,14 @@ msgstr "SMTP settings"
 msgid "Sort By"
 msgstr "Sort By"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Start"
+msgstr "Start"
+
+#: src/components/containers-table/containers-table-columns.tsx
+msgid "Start container"
+msgstr "Start container"
+
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -2122,6 +2151,14 @@ msgstr "State"
 #: src/lib/alerts.ts
 msgid "Status"
 msgstr "Status"
+
+#: src/components/containers-table/containers-table.tsx
+msgid "Stop"
+msgstr "Stop"
+
+#: src/components/containers-table/containers-table-columns.tsx
+msgid "Stop container"
+msgstr "Stop container"
 
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Sub State"
