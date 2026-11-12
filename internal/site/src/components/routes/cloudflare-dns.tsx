@@ -12,6 +12,8 @@ import {
 	DialogTitle,
 } from "@/components/ui/dialog"
 import { pb } from "@/lib/api"
+import { $systems } from "@/lib/stores"
+import { useStore } from "@nanostores/react"
 import {
 	Cloud,
 	Plus,
@@ -24,6 +26,7 @@ import {
 	XCircle,
 	Globe,
 	Zap,
+	Server,
 } from "lucide-react"
 
 export interface DNSRecord {
@@ -55,6 +58,7 @@ interface DNSCheckResult {
 }
 
 export function CloudflareDNSView({ onOpenConnect }: { onOpenConnect: () => void }) {
+	const systems = useStore($systems)
 	const [zones, setZones] = useState<ZoneItem[]>([])
 	const [selectedZone, setSelectedZone] = useState<string>("")
 	const [records, setRecords] = useState<DNSRecord[]>([])
@@ -62,6 +66,7 @@ export function CloudflareDNSView({ onOpenConnect }: { onOpenConnect: () => void
 	const [loadingRecords, setLoadingRecords] = useState(false)
 	const [search, setSearch] = useState("")
 	const [typeFilter, setTypeFilter] = useState("ALL")
+	const [serverFilter, setServerFilter] = useState("ALL")
 	const [error, setError] = useState<string | null>(null)
 
 	// Resolution test cache: recordId -> result
@@ -242,7 +247,11 @@ export function CloudflareDNSView({ onOpenConnect }: { onOpenConnect: () => void
 			r.content.toLowerCase().includes(search.toLowerCase()) ||
 			(r.comment && r.comment.toLowerCase().includes(search.toLowerCase()))
 		const matchType = typeFilter === "ALL" || r.type === typeFilter
-		return matchSearch && matchType
+		const matchServer =
+			serverFilter === "ALL" ||
+			r.content === serverFilter ||
+			(r.name.startsWith("*.") && r.content === serverFilter)
+		return matchSearch && matchType && matchServer
 	})
 
 	const types = ["ALL", "A", "AAAA", "CNAME", "TXT", "MX", "NS"]
@@ -334,14 +343,35 @@ export function CloudflareDNSView({ onOpenConnect }: { onOpenConnect: () => void
 
 			{/* Filter bar */}
 			<div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-				<div className="relative w-full sm:w-72">
-					<Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-					<Input
-						placeholder="Search DNS records..."
-						value={search}
-						onChange={(e) => setSearch(e.target.value)}
-						className="pl-9 h-9"
-					/>
+				<div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
+					<div className="relative w-full sm:w-64">
+						<Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+						<Input
+							placeholder="Search DNS records..."
+							value={search}
+							onChange={(e) => setSearch(e.target.value)}
+							className="pl-9 h-9"
+						/>
+					</div>
+
+					{systems.length > 0 && (
+						<div className="flex items-center gap-1.5 w-full sm:w-auto">
+							<Server className="h-3.5 w-3.5 text-muted-foreground shrink-0 hidden sm:block" />
+							<select
+								className="h-9 px-2.5 rounded-md border border-input bg-background text-xs focus:outline-none focus:ring-1 focus:ring-primary w-full sm:w-48"
+								value={serverFilter}
+								onChange={(e) => setServerFilter(e.target.value)}
+								title="Filter by target server"
+							>
+								<option value="ALL">All Target Servers</option>
+								{systems.map((s) => (
+									<option key={s.id} value={s.host}>
+										{s.name} ({s.host})
+									</option>
+								))}
+							</select>
+						</div>
+					)}
 				</div>
 
 				<div className="flex items-center gap-1 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">

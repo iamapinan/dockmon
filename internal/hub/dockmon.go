@@ -84,17 +84,33 @@ type CloudflareSettings struct {
 	LastSynced time.Time `json:"lastSynced,omitempty"`
 }
 
+// CFDNSRecordItem represents a DNS record from Cloudflare
+type CFDNSRecordItem struct {
+	ID          string `json:"id"`
+	ZoneID      string `json:"zoneId"`
+	ZoneName    string `json:"zoneName"`
+	Name        string `json:"name"`
+	Type        string `json:"type"`
+	Content     string `json:"content"`
+	Proxied     bool   `json:"proxied"`
+	TTL         int    `json:"ttl"`
+	IsMonitored bool   `json:"isMonitored,omitempty"`
+	MonitorID   string `json:"monitorId,omitempty"`
+}
+
 // DockMonManager coordinates domain checks, Cloudflare integration, and alert policies
 type DockMonManager struct {
-	hub          *Hub
-	mu           sync.RWMutex
-	domains      map[string]*DomainMonitor
-	policies     map[string]*AlertPolicy
-	cfSettings   CloudflareSettings
-	domainsFile  string
-	policiesFile string
-	cfFile       string
-	stopChan     chan struct{}
+	hub               *Hub
+	mu                sync.RWMutex
+	domains           map[string]*DomainMonitor
+	policies          map[string]*AlertPolicy
+	cfSettings        CloudflareSettings
+	cfDNSRecordsCache []CFDNSRecordItem
+	cfCacheExpiry     time.Time
+	domainsFile       string
+	policiesFile      string
+	cfFile            string
+	stopChan          chan struct{}
 }
 
 func newDockMonManager(hub *Hub) *DockMonManager {
@@ -448,6 +464,89 @@ func sendAlertNotification(ch AlertPolicyChannels, title, message string) {
 			_, _ = client.Post(ch.CustomWebhook, "application/json", bytes.NewBuffer(b))
 		}
 	}
+}
+
+func (dm *DockMonManager) fetchAllCloudflareRecords(forceRefresh bool) ([]CFDNSRecordItem, error) {
+	dm.mu.RLock()
+	token := dm.cfSettings.APIToken
+	if !forceRefresh && time.Now().Before(dm.cfCacheExpiry) && len(dm.cfDNSRecordsCache) > 0 {
+		cached := make([]CFDNSRecordItem, len(dm.cfDNSRecordsCache))
+		copy(cached, dm.cfDNSRecordsCache)
+		dm.mu.RUnlock()
+		return cached, nil
+	}
+	dm.mu.RUnlock()
+
+	if token == "" {
+		return nil, fmt.Errorf("Cloudflare API Token not configured")
+	}
+
+	client := &http.Client{Timeout: 15 * time.Second}
+	req, err := http.NewRequest("GET", "https://api.cloudflare.com/client/v4/zones?per_page=50&status=active", nil)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Authorization", "Bearer "+token)
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var zonesResult struct {
+		Result []struct {
+			ID   string `json:"id"`
+			Name string `json:"name"`
+		} `json:"result"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&zonesResult); err != nil {
+		return nil, err
+	}
+
+	var allRecords []CFDNSRecordItem
+	for _, zone := range zonesResult.Result {
+		dnsReq, err := http.NewRequest("GET", fmt.Sprintf("https://api.cloudflare.com/client/v4/zones/%s/dns_records?per_page=100", zone.ID), nil)
+		if err != nil {
+			continue
+		}
+		dnsReq.Header.Set("Authorization", "Bearer "+token)
+		dnsResp, err := client.Do(dnsReq)
+		if err != nil {
+			continue
+		}
+		var dnsResult struct {
+			Result []struct {
+				ID      string `json:"id"`
+				Name    string `json:"name"`
+				Type    string `json:"type"`
+				Content string `json:"content"`
+				Proxied bool   `json:"proxied"`
+				TTL     int    `json:"ttl"`
+			} `json:"result"`
+		}
+		_ = json.NewDecoder(dnsResp.Body).Decode(&dnsResult)
+		dnsResp.Body.Close()
+
+		for _, r := range dnsResult.Result {
+			allRecords = append(allRecords, CFDNSRecordItem{
+				ID:       r.ID,
+				ZoneID:   zone.ID,
+				ZoneName: zone.Name,
+				Name:     r.Name,
+				Type:     r.Type,
+				Content:  r.Content,
+				Proxied:  r.Proxied,
+				TTL:      r.TTL,
+			})
+		}
+	}
+
+	dm.mu.Lock()
+	dm.cfDNSRecordsCache = allRecords
+	dm.cfCacheExpiry = time.Now().Add(3 * time.Minute)
+	dm.mu.Unlock()
+
+	return allRecords, nil
 }
 
 // ---------------- DOCKER ENGINE HELPERS ----------------
@@ -1031,6 +1130,146 @@ func (h *Hub) registerDockMonRoutes(se *core.ServeEvent, dm *DockMonManager) {
 			"status":     status,
 			"message":    message,
 			"lastTested": time.Now(),
+		})
+	})
+
+	// GET /api/dockmon/cloudflare/server-domains (Domains pointing to a specific server)
+	api.GET("/cloudflare/server-domains", func(e *core.RequestEvent) error {
+		serverId := e.Request.URL.Query().Get("serverId")
+		ip := e.Request.URL.Query().Get("ip")
+		refresh := e.Request.URL.Query().Get("refresh") == "true"
+
+		var targetIP string
+		var serverName string
+
+		if serverId != "" {
+			if rec, err := dm.hub.FindRecordById("systems", serverId); err == nil {
+				targetIP = rec.GetString("host")
+				serverName = rec.GetString("name")
+			}
+		}
+		if ip != "" {
+			targetIP = ip
+		}
+
+		if targetIP == "" {
+			return e.BadRequestError("Either serverId or ip parameter is required", nil)
+		}
+
+		allRecords, err := dm.fetchAllCloudflareRecords(refresh)
+		if err != nil {
+			return e.BadRequestError("Failed to fetch Cloudflare records: "+err.Error(), nil)
+		}
+
+		dm.mu.RLock()
+		monitoredMap := make(map[string]string)
+		for _, d := range dm.domains {
+			parsedURL := strings.TrimPrefix(d.URL, "http://")
+			parsedURL = strings.TrimPrefix(parsedURL, "https://")
+			parsedURL = strings.Split(parsedURL, "/")[0]
+			parsedURL = strings.Split(parsedURL, ":")[0]
+			monitoredMap[strings.ToLower(parsedURL)] = d.ID
+		}
+		dm.mu.RUnlock()
+
+		var matched []CFDNSRecordItem
+		for _, r := range allRecords {
+			isMatch := false
+			if r.Content == targetIP {
+				isMatch = true
+			} else if strings.HasPrefix(r.Name, "*.") && r.Content == targetIP {
+				isMatch = true
+			}
+
+			if isMatch {
+				rec := r
+				cleanName := strings.ToLower(r.Name)
+				if monID, exists := monitoredMap[cleanName]; exists {
+					rec.IsMonitored = true
+					rec.MonitorID = monID
+				}
+				matched = append(matched, rec)
+			}
+		}
+
+		return e.JSON(http.StatusOK, map[string]interface{}{
+			"server": map[string]string{
+				"id":   serverId,
+				"name": serverName,
+				"host": targetIP,
+			},
+			"domains": matched,
+			"total":   len(matched),
+		})
+	})
+
+	// GET /api/dockmon/cloudflare/records-by-server (Cloudflare domains mapped by server)
+	api.GET("/cloudflare/records-by-server", func(e *core.RequestEvent) error {
+		refresh := e.Request.URL.Query().Get("refresh") == "true"
+		allRecords, err := dm.fetchAllCloudflareRecords(refresh)
+		if err != nil {
+			return e.BadRequestError("Failed to fetch Cloudflare records: "+err.Error(), nil)
+		}
+
+		systems, err := dm.hub.FindAllRecords("systems")
+		if err != nil {
+			return e.BadRequestError("Failed to load systems", err)
+		}
+
+		dm.mu.RLock()
+		monitoredMap := make(map[string]string)
+		for _, d := range dm.domains {
+			parsedURL := strings.TrimPrefix(d.URL, "http://")
+			parsedURL = strings.TrimPrefix(parsedURL, "https://")
+			parsedURL = strings.Split(parsedURL, "/")[0]
+			parsedURL = strings.Split(parsedURL, ":")[0]
+			monitoredMap[strings.ToLower(parsedURL)] = d.ID
+		}
+		dm.mu.RUnlock()
+
+		type ServerDomainGroup struct {
+			ServerID   string            `json:"serverId"`
+			ServerName string            `json:"serverName"`
+			Host       string            `json:"host"`
+			Domains    []CFDNSRecordItem `json:"domains"`
+			Count      int               `json:"count"`
+		}
+
+		byServer := make(map[string]*ServerDomainGroup)
+		ipToSystem := make(map[string]string)
+
+		for _, sys := range systems {
+			host := sys.GetString("host")
+			byServer[sys.Id] = &ServerDomainGroup{
+				ServerID:   sys.Id,
+				ServerName: sys.GetString("name"),
+				Host:       host,
+				Domains:    []CFDNSRecordItem{},
+				Count:      0,
+			}
+			if host != "" {
+				ipToSystem[host] = sys.Id
+			}
+		}
+
+		for _, r := range allRecords {
+			rec := r
+			cleanName := strings.ToLower(r.Name)
+			if monID, exists := monitoredMap[cleanName]; exists {
+				rec.IsMonitored = true
+				rec.MonitorID = monID
+			}
+
+			if sysId, found := ipToSystem[r.Content]; found {
+				group := byServer[sysId]
+				group.Domains = append(group.Domains, rec)
+				group.Count++
+			}
+		}
+
+		return e.JSON(http.StatusOK, map[string]interface{}{
+			"byServer":     byServer,
+			"totalRecords": len(allRecords),
 		})
 	})
 
