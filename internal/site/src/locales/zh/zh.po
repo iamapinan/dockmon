@@ -2046,6 +2046,11 @@ msgstr "傳送"
 msgid "Serial Number"
 msgstr "序號"
 
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+msgid "Servers"
+msgstr ""
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service Details"
 msgstr "服務詳細資訊"

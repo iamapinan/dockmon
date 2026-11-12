@@ -2041,6 +2041,11 @@ msgstr "ส่งแล้ว"
 msgid "Serial Number"
 msgstr "หมายเลขซีเรียล"
 
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+msgid "Servers"
+msgstr "เซิร์ฟเวอร์"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service Details"
 msgstr "รายละเอียดบริการ"

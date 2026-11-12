@@ -2046,6 +2046,11 @@ msgstr "Enviat"
 msgid "Serial Number"
 msgstr "Número de sèrie"
 
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+msgid "Servers"
+msgstr ""
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service Details"
 msgstr "Detalls del servei"

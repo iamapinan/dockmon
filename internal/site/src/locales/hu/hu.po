@@ -2046,6 +2046,11 @@ msgstr "Elküldve"
 msgid "Serial Number"
 msgstr "Sorozatszám"
 
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+msgid "Servers"
+msgstr ""
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service Details"
 msgstr "Szolgáltatás részletei"

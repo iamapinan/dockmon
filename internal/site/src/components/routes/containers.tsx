@@ -32,7 +32,6 @@ import {
 	SlidersHorizontal,
 	Activity,
 	Server,
-	Globe,
 	Cpu,
 	MemoryStick,
 	ChevronDown,
@@ -545,7 +544,32 @@ export default memo(() => {
 					</p>
 				</div>
 
-				<div className="flex items-center gap-2">
+				<div className="flex flex-wrap items-center gap-2">
+					{/* Host / Server Select Box on Toolbar */}
+					<div className="flex items-center gap-1.5 bg-muted/60 px-2.5 py-1 rounded-lg border border-border/60">
+						<Server className="h-3.5 w-3.5 text-primary shrink-0" />
+						<select
+							className="h-7 pl-1.5 pr-4 rounded-md bg-background text-xs font-medium border border-input focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer max-w-[200px] sm:max-w-[260px] truncate"
+							value={selectedServer}
+							onChange={(e) => setSelectedServer(e.target.value)}
+							aria-label="Select Host / Server"
+						>
+							<option value="all">🌐 All Hosts ({allUnified.length})</option>
+							{systems.map((s) => {
+								const count = unifiedAgent.filter((c) => c.systemId === s.id).length
+								const cfCount = cfServerCounts[s.id] || 0
+								return (
+									<option key={s.id} value={s.id}>
+										{s.name} ({s.host}) — {count} containers{cfCount > 0 ? ` • ${cfCount} CF` : ""}
+									</option>
+								)
+							})}
+							<option value="local">
+								💻 Local Docker ({unifiedLocal.length})
+							</option>
+						</select>
+					</div>
+
 					{activeTab === "containers" && (
 						<div className="flex items-center bg-muted/60 p-1 rounded-lg border border-border/60">
 							<Button
@@ -568,93 +592,11 @@ export default memo(() => {
 							</Button>
 						</div>
 					)}
-					<Button variant="outline" size="sm" onClick={refreshAll}>
+					<Button variant="outline" size="sm" className="h-9 text-xs gap-1.5" onClick={refreshAll}>
 						<RefreshCw className={`h-3.5 w-3.5 mr-1.5 ${loadingAgent || loadingLocal ? "animate-spin" : ""}`} />
 						Refresh
 					</Button>
 				</div>
-			</div>
-
-			{/* Server Selector Menu (เมนู Server ด้านบน) */}
-			<div className="flex flex-wrap items-center gap-2 p-2.5 rounded-xl border bg-card/60 backdrop-blur">
-				<div className="text-xs font-semibold text-muted-foreground flex items-center gap-1.5 px-2">
-					<Server className="h-3.5 w-3.5 text-primary" />
-					<span>Select Host / Server:</span>
-				</div>
-
-				<Button
-					variant={selectedServer === "all" ? "default" : "outline"}
-					size="sm"
-					className="h-7 text-xs gap-1.5"
-					onClick={() => setSelectedServer("all")}
-				>
-					<Globe className="h-3 w-3" />
-					All Hosts ({allUnified.length})
-				</Button>
-
-				{/* Remote Systems from Beszel/DockMon */}
-				{systems.map((s) => {
-					const count = unifiedAgent.filter((c) => c.systemId === s.id).length
-					const isSelected = selectedServer === s.id
-					const cfCount = cfServerCounts[s.id] || 0
-
-					return (
-						<Button
-							key={s.id}
-							variant={isSelected ? "default" : "outline"}
-							size="sm"
-							className={`h-7 text-xs gap-1.5 ${isSelected ? "" : "border-border/70"}`}
-							onClick={() => setSelectedServer(s.id)}
-						>
-							<span
-								className={`h-2 w-2 rounded-full ${
-									s.status === "up" ? "bg-emerald-500 animate-pulse" : "bg-red-500"
-								}`}
-							/>
-							<span className="font-semibold">{s.name}</span>
-							<span className="text-[10px] text-muted-foreground font-mono">({s.host})</span>
-							<span
-								className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
-									isSelected ? "bg-primary-foreground/20 text-primary-foreground" : "bg-muted text-foreground"
-								}`}
-							>
-								{count}
-							</span>
-							{cfCount > 0 && (
-								<span
-									className={`text-[9px] px-1 py-0.2 rounded font-mono ${
-										isSelected ? "bg-amber-400 text-black font-bold" : "bg-amber-500/15 text-amber-500 border border-amber-500/20"
-									}`}
-									title={`${cfCount} domain(s) in Cloudflare point to this server`}
-								>
-									{cfCount} CF
-								</span>
-							)}
-						</Button>
-					)
-				})}
-
-				{/* Local Docker Engine */}
-				<Button
-					variant={selectedServer === "local" ? "default" : "outline"}
-					size="sm"
-					className={`h-7 text-xs gap-1.5 ${selectedServer === "local" ? "" : "border-border/70"}`}
-					onClick={() => setSelectedServer("local")}
-				>
-					<span
-						className={`h-2 w-2 rounded-full ${
-							dockerInfo?.available ? "bg-emerald-500" : "bg-muted-foreground"
-						}`}
-					/>
-					<span>Local Docker</span>
-					<span
-						className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
-							selectedServer === "local" ? "bg-primary-foreground/20 text-primary-foreground" : "bg-muted text-foreground"
-						}`}
-					>
-						{unifiedLocal.length}
-					</span>
-				</Button>
 			</div>
 
 			{/* Active Server Info Header (when a specific remote system is selected) */}

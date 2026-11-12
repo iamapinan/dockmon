@@ -2046,6 +2046,11 @@ msgstr "Відправлено"
 msgid "Serial Number"
 msgstr "Серійний номер"
 
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+msgid "Servers"
+msgstr ""
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service Details"
 msgstr "Деталі служби"

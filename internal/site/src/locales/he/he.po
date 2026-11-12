@@ -2046,6 +2046,11 @@ msgstr "נשלח"
 msgid "Serial Number"
 msgstr "מספר סידורי"
 
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+msgid "Servers"
+msgstr ""
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service Details"
 msgstr "פרטי שירות"
