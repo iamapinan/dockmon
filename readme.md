@@ -1,6 +1,6 @@
-# Beszel
+# DockMon
 
-Beszel is a lightweight server monitoring platform that includes Docker statistics, historical data, and alert functions.
+A lightweight server monitoring with historical data, docker stats, domains view, cloudflare connect, multi-server, and alerts functions with alert policy support.
 
 It has a friendly web interface, simple configuration, and is ready to use out of the box. It supports automatic backup, multi-user, OAuth authentication, and API access.
 
