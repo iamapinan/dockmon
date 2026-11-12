@@ -1,41 +1,31 @@
-import { useId } from "react"
-
 export function Logo({ className }: { className?: string }) {
-	const id = useId()
-
 	return (
-		<div className={`flex items-center gap-2 font-bold tracking-tight select-none ${className || ""}`}>
+		<div className={`flex items-center gap-2.5 select-none ${className || ""}`}>
 			<svg
 				role="img"
 				aria-label="DockMon Logo"
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 32 32"
-				className="h-7 w-7 shrink-0"
+				className="h-6 w-6 shrink-0 text-foreground"
 			>
-				<defs>
-					<linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="100%">
-						<stop offset="0%" stopColor="#3b82f6" />
-						<stop offset="100%" stopColor="#10b981" />
-					</linearGradient>
-				</defs>
-				{/* Modern Container / Server Hexagon Cube */}
+				{/* Clean geometric isometric server/container cube */}
 				<path
-					d="M16 2L3 9v14l13 7 13-7V9L16 2z"
-					fill={`url(#${id})`}
-					opacity="0.95"
-				/>
-				<path
-					d="M16 2v14M16 16L3 9M16 16l13-7M16 16v14"
-					stroke="currentColor"
+					d="M16 3L4 9.5v13L16 29l12-6.5v-13L16 3z"
+					className="fill-foreground/10 stroke-foreground"
 					strokeWidth="1.75"
 					strokeLinecap="round"
 					strokeLinejoin="round"
-					className="text-background"
 				/>
-				{/* Pulsing Core node */}
-				<circle cx="16" cy="16" r="3" fill="#ffffff" />
+				<path
+					d="M16 3v13M16 16L4 9.5M16 16l12-6.5M16 16v13"
+					className="stroke-foreground"
+					strokeWidth="1.75"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<circle cx="16" cy="16" r="2.5" className="fill-foreground" />
 			</svg>
-			<span className="text-lg md:text-xl font-extrabold tracking-tight bg-gradient-to-r from-blue-500 via-teal-400 to-emerald-400 bg-clip-text text-transparent">
+			<span className="text-base font-semibold tracking-tight text-foreground">
 				DockMon
 			</span>
 		</div>

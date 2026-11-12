@@ -227,13 +227,13 @@ export function UserAuthForm({
 	}
 
 	return (
-		<div className={cn("grid gap-5", className)} {...props}>
+		<div className={cn("grid gap-4", className)} {...props}>
 			{passwordEnabled && (
 				<>
 					<form onSubmit={handleSubmit} onChange={() => setErrors({})}>
-						<div className="grid gap-3">
+						<div className="grid gap-3.5">
 							<div className="grid gap-1.5 relative">
-								<MailIcon className="absolute left-3.5 top-3.5 h-4 w-4 text-muted-foreground/70 pointer-events-none" />
+								<MailIcon className="absolute left-3 top-3 h-4 w-4 text-muted-foreground/60 pointer-events-none" />
 								<Label className="sr-only" htmlFor="email">
 									<Trans>Email</Trans>
 								</Label>
@@ -248,14 +248,14 @@ export function UserAuthForm({
 									autoCorrect="off"
 									disabled={isLoading || isOauthLoading}
 									className={cn(
-										"ps-10 h-11 rounded-lg bg-muted/30 hover:bg-muted/50 focus:bg-background border-border/80 focus:border-primary transition-all text-sm",
+										"ps-9 h-10 rounded-lg bg-muted/40 dark:bg-muted/20 border-border/80 focus:border-foreground/50 focus:ring-1 focus:ring-foreground/20 text-sm transition-colors",
 										errors?.email && "border-destructive focus:border-destructive"
 									)}
 								/>
 								{errors?.email && <p className="px-1 text-xs text-destructive">{errors.email}</p>}
 							</div>
 							<div className="grid gap-1.5 relative">
-								<LockIcon className="absolute left-3.5 top-3.5 h-4 w-4 text-muted-foreground/70 pointer-events-none" />
+								<LockIcon className="absolute left-3 top-3 h-4 w-4 text-muted-foreground/60 pointer-events-none" />
 								<Label className="sr-only" htmlFor="pass">
 									<Trans>Password</Trans>
 								</Label>
@@ -268,7 +268,7 @@ export function UserAuthForm({
 									autoComplete="current-password"
 									disabled={isLoading || isOauthLoading}
 									className={cn(
-										"ps-10 h-11 rounded-lg bg-muted/30 hover:bg-muted/50 focus:bg-background border-border/80 focus:border-primary transition-all text-sm",
+										"ps-9 h-10 rounded-lg bg-muted/40 dark:bg-muted/20 border-border/80 focus:border-foreground/50 focus:ring-1 focus:ring-foreground/20 text-sm transition-colors",
 										errors?.password && "border-destructive focus:border-destructive"
 									)}
 								/>
@@ -276,7 +276,7 @@ export function UserAuthForm({
 							</div>
 							{isFirstRun && (
 								<div className="grid gap-1.5 relative">
-									<LockIcon className="absolute left-3.5 top-3.5 h-4 w-4 text-muted-foreground/70 pointer-events-none" />
+									<LockIcon className="absolute left-3 top-3 h-4 w-4 text-muted-foreground/60 pointer-events-none" />
 									<Label className="sr-only" htmlFor="pass2">
 										<Trans>Confirm password</Trans>
 									</Label>
@@ -289,7 +289,7 @@ export function UserAuthForm({
 										autoComplete="current-password"
 										disabled={isLoading || isOauthLoading}
 										className={cn(
-											"ps-10 h-11 rounded-lg bg-muted/30 hover:bg-muted/50 focus:bg-background border-border/80 focus:border-primary transition-all text-sm",
+											"ps-9 h-10 rounded-lg bg-muted/40 dark:bg-muted/20 border-border/80 focus:border-foreground/50 focus:ring-1 focus:ring-foreground/20 text-sm transition-colors",
 											errors?.password && "border-destructive focus:border-destructive"
 										)}
 									/>
@@ -314,7 +314,7 @@ export function UserAuthForm({
 								/>
 							</div>
 							<button
-								className="h-11 w-full rounded-lg font-semibold text-sm flex items-center justify-center bg-gradient-to-r from-blue-600 via-teal-600 to-emerald-600 hover:from-blue-500 hover:via-teal-500 hover:to-emerald-500 text-white shadow-md shadow-blue-500/20 active:scale-[0.99] transition-all duration-200 cursor-pointer disabled:opacity-60"
+								className="h-10 w-full rounded-lg font-medium text-sm flex items-center justify-center bg-foreground text-background hover:bg-foreground/90 transition-colors cursor-pointer disabled:opacity-50"
 								disabled={isLoading}
 							>
 								{isLoading ? (
@@ -327,13 +327,12 @@ export function UserAuthForm({
 						</div>
 					</form>
 					{(isFirstRun || oauthEnabled || (otpEnabled && !mfaEnabled)) && (
-						// only show 'continue with' during onboarding or if we have auth providers
-						<div className="relative my-1">
+						<div className="relative my-0.5">
 							<div className="absolute inset-0 flex items-center">
 								<span className="w-full border-t border-border/60" />
 							</div>
-							<div className="relative flex justify-center text-xs uppercase">
-								<span className="bg-card px-3 text-[11px] font-semibold text-muted-foreground/70 tracking-wider">
+							<div className="relative flex justify-center text-xs">
+								<span className="bg-card px-2 text-xs text-muted-foreground">
 									<Trans>Or continue with</Trans>
 								</span>
 							</div>
@@ -349,10 +348,10 @@ export function UserAuthForm({
 						type="button"
 						className={cn(
 							buttonVariants({ variant: "outline" }),
-							"h-10 rounded-lg border-border/70 bg-muted/20 hover:bg-muted/50 transition-all flex gap-2 text-xs font-medium"
+							"h-9 rounded-lg border-border/70 hover:bg-muted/50 transition-colors flex gap-2 text-xs font-medium"
 						)}
 					>
-						<KeyIcon className="size-4" />
+						<KeyIcon className="size-3.5" />
 						<Trans>One-time password</Trans>
 					</Link>
 				</div>
@@ -365,7 +364,7 @@ export function UserAuthForm({
 							type="button"
 							className={cn(
 								buttonVariants({ variant: "outline" }),
-								"h-10 rounded-lg border-border/70 bg-muted/20 hover:bg-muted/50 transition-all text-xs font-medium",
+								"h-9 rounded-lg border-border/70 hover:bg-muted/50 transition-colors text-xs font-medium",
 								{
 									"justify-self-center": !passwordEnabled,
 									"px-5": !passwordEnabled,
@@ -375,10 +374,10 @@ export function UserAuthForm({
 							disabled={isLoading || isOauthLoading}
 						>
 							{isOauthLoading ? (
-								<LoaderCircle className="me-2 h-4 w-4 animate-spin" />
+								<LoaderCircle className="me-2 h-3.5 w-3.5 animate-spin" />
 							) : (
 								<img
-									className="me-2 h-4 w-4 dark:brightness-0 dark:invert"
+									className="me-2 h-3.5 w-3.5 dark:brightness-0 dark:invert"
 									src={getAuthProviderIcon(provider)}
 									alt=""
 								/>
@@ -389,17 +388,16 @@ export function UserAuthForm({
 				</div>
 			)}
 			{!oauthEnabled && isFirstRun && (
-				// only show GitHub button / dialog during onboarding
 				<Dialog>
 					<DialogTrigger asChild>
 						<button
 							type="button"
 							className={cn(
 								buttonVariants({ variant: "outline" }),
-								"h-10 rounded-lg border-border/70 bg-muted/20 hover:bg-muted/50 transition-all text-xs font-medium"
+								"h-9 rounded-lg border-border/70 hover:bg-muted/50 transition-colors text-xs font-medium"
 							)}
 						>
-							<img className="me-2 h-4 w-4 dark:invert" src={prependBasePath("/_/images/oauth2/github.svg")} alt="" />
+							<img className="me-2 h-3.5 w-3.5 dark:invert" src={prependBasePath("/_/images/oauth2/github.svg")} alt="" />
 							<span className="translate-y-px">GitHub</span>
 						</button>
 					</DialogTrigger>
@@ -432,7 +430,7 @@ export function UserAuthForm({
 			{passwordEnabled && !isFirstRun && (
 				<Link
 					href={getPagePath($router, "forgot_password")}
-					className="text-xs text-center text-muted-foreground hover:text-foreground underline underline-offset-4 opacity-75 hover:opacity-100 transition-opacity"
+					className="text-xs text-center text-muted-foreground hover:text-foreground underline underline-offset-4 opacity-80 hover:opacity-100 transition-opacity"
 				>
 					<Trans>Forgot password?</Trans>
 				</Link>
