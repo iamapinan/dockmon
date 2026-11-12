@@ -325,6 +325,10 @@ msgstr "Gemiddelde, minimale en maximale reactietijd"
 msgid "Avg 1h"
 msgstr "Gem. 1 u"
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr ""
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

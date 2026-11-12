@@ -325,6 +325,10 @@ msgstr "Середній, мінімальний і максимальний ч�
 msgid "Avg 1h"
 msgstr "Сер. за 1 год"
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr ""
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

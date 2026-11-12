@@ -325,6 +325,10 @@ msgstr "זמן תגובה ממוצע, מינימלי ומקסימלי"
 msgid "Avg 1h"
 msgstr "ממוצע שעה אחת"
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr ""
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

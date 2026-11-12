@@ -325,6 +325,10 @@ msgstr "Thời gian phản hồi trung bình, tối thiểu và tối đa"
 msgid "Avg 1h"
 msgstr "TB 1 giờ"
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr ""
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

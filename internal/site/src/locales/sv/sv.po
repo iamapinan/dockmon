@@ -325,6 +325,10 @@ msgstr "Genomsnittlig, lägsta och högsta svarstid"
 msgid "Avg 1h"
 msgstr "Gen. 1 tim"
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr ""
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

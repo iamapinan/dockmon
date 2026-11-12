@@ -325,6 +325,10 @@ msgstr "Среднее, минимальное и максимальное вр�
 msgid "Avg 1h"
 msgstr "Сред. за 1 ч"
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr ""
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

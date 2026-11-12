@@ -320,6 +320,10 @@ msgstr "เวลาตอบสนองเฉลี่ย ต่ำสุด �
 msgid "Avg 1h"
 msgstr "เฉลี่ย 1 ชม."
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr ""
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

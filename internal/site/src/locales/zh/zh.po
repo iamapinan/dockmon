@@ -325,6 +325,10 @@ msgstr "平均、最小及最大回應時間"
 msgid "Avg 1h"
 msgstr "1 小時平均"
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr ""
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

@@ -325,6 +325,10 @@ msgstr "Μέσος, ελάχιστος και μέγιστος χρόνος απ
 msgid "Avg 1h"
 msgstr "Μέσος όρος 1ώρου"
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr ""
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

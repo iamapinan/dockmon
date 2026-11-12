@@ -325,6 +325,10 @@ msgstr "Ortacha, minimal va maksimal javob vaqti"
 msgid "Avg 1h"
 msgstr "1 soat o‘rtacha"
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr ""
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

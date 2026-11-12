@@ -325,6 +325,10 @@ msgstr "Prosječno, minimalno i maksimalno vrijeme odziva"
 msgid "Avg 1h"
 msgstr "Prosjek 1 h"
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr ""
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

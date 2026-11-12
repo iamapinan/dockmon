@@ -4,9 +4,7 @@ import { useCallback, useState } from "react"
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/otp"
 import { pb } from "@/lib/api"
 import { $authenticated } from "@/lib/stores"
-import { cn } from "@/lib/utils"
 import { $router } from "../router"
-import { buttonVariants } from "../ui/button"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 import { showLoginFaliedToast } from "./auth-form"
@@ -72,8 +70,8 @@ export function OtpRequestForm() {
 	return (
 		<form onSubmit={handleSubmit}>
 			<div className="grid gap-3">
-				<div className="grid gap-1 relative">
-					<MailIcon className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+				<div className="grid gap-1.5 relative">
+					<MailIcon className="absolute left-3.5 top-3.5 h-4 w-4 text-muted-foreground/70 pointer-events-none" />
 					<Label className="sr-only" htmlFor="email">
 						<Trans>Email</Trans>
 					</Label>
@@ -89,10 +87,13 @@ export function OtpRequestForm() {
 						autoComplete="email"
 						autoCorrect="off"
 						disabled={isLoading}
-						className="ps-9"
+						className="ps-10 h-11 rounded-lg bg-muted/30 hover:bg-muted/50 focus:bg-background border-border/80 focus:border-primary transition-all text-sm"
 					/>
 				</div>
-				<button className={cn(buttonVariants())} disabled={isLoading}>
+				<button
+					className="h-11 w-full rounded-lg font-semibold text-sm flex items-center justify-center bg-gradient-to-r from-blue-600 via-teal-600 to-emerald-600 hover:from-blue-500 hover:via-teal-500 hover:to-emerald-500 text-white shadow-md shadow-blue-500/20 active:scale-[0.99] transition-all duration-200 cursor-pointer disabled:opacity-60"
+					disabled={isLoading}
+				>
 					{isLoading ? (
 						<LoaderCircle className="me-2 h-4 w-4 animate-spin" />
 					) : (

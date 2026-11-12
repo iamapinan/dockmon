@@ -325,6 +325,10 @@ msgstr "Átlagos, minimális és maximális válaszidő"
 msgid "Avg 1h"
 msgstr "Átl. 1 óra"
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr ""
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

@@ -320,6 +320,10 @@ msgstr "Average, minimum, and maximum response time"
 msgid "Avg 1h"
 msgstr "Avg 1h"
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr "Back to Sign in"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

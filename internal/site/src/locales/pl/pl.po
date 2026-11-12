@@ -325,6 +325,10 @@ msgstr "Średni, minimalny i maksymalny czas odpowiedzi"
 msgid "Avg 1h"
 msgstr "Śr. 1 godz."
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr ""
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

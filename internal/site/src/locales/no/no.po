@@ -325,6 +325,10 @@ msgstr "Gjennomsnittlig, minste og høyeste svartid"
 msgid "Avg 1h"
 msgstr "Gj.sn. 1 t"
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr ""
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

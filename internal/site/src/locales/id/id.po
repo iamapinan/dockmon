@@ -325,6 +325,10 @@ msgstr "Waktu respons rata-rata, minimum, dan maksimum"
 msgid "Avg 1h"
 msgstr "Rata-rata 1 jam"
 
+#: src/components/login/forgot-pass-form.tsx
+msgid "Back to Sign in"
+msgstr ""
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Backups"

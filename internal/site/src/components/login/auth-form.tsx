@@ -227,13 +227,13 @@ export function UserAuthForm({
 	}
 
 	return (
-		<div className={cn("grid gap-6", className)} {...props}>
+		<div className={cn("grid gap-5", className)} {...props}>
 			{passwordEnabled && (
 				<>
 					<form onSubmit={handleSubmit} onChange={() => setErrors({})}>
-						<div className="grid gap-2.5">
-							<div className="grid gap-1 relative">
-								<MailIcon className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+						<div className="grid gap-3">
+							<div className="grid gap-1.5 relative">
+								<MailIcon className="absolute left-3.5 top-3.5 h-4 w-4 text-muted-foreground/70 pointer-events-none" />
 								<Label className="sr-only" htmlFor="email">
 									<Trans>Email</Trans>
 								</Label>
@@ -247,12 +247,15 @@ export function UserAuthForm({
 									autoComplete="email"
 									autoCorrect="off"
 									disabled={isLoading || isOauthLoading}
-									className={cn("ps-9", errors?.email && "border-red-500")}
+									className={cn(
+										"ps-10 h-11 rounded-lg bg-muted/30 hover:bg-muted/50 focus:bg-background border-border/80 focus:border-primary transition-all text-sm",
+										errors?.email && "border-destructive focus:border-destructive"
+									)}
 								/>
-								{errors?.email && <p className="px-1 text-xs text-red-600">{errors.email}</p>}
+								{errors?.email && <p className="px-1 text-xs text-destructive">{errors.email}</p>}
 							</div>
-							<div className="grid gap-1 relative">
-								<LockIcon className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+							<div className="grid gap-1.5 relative">
+								<LockIcon className="absolute left-3.5 top-3.5 h-4 w-4 text-muted-foreground/70 pointer-events-none" />
 								<Label className="sr-only" htmlFor="pass">
 									<Trans>Password</Trans>
 								</Label>
@@ -264,13 +267,16 @@ export function UserAuthForm({
 									type="password"
 									autoComplete="current-password"
 									disabled={isLoading || isOauthLoading}
-									className={cn("ps-9", errors?.password && "border-red-500")}
+									className={cn(
+										"ps-10 h-11 rounded-lg bg-muted/30 hover:bg-muted/50 focus:bg-background border-border/80 focus:border-primary transition-all text-sm",
+										errors?.password && "border-destructive focus:border-destructive"
+									)}
 								/>
-								{errors?.password && <p className="px-1 text-xs text-red-600">{errors.password}</p>}
+								{errors?.password && <p className="px-1 text-xs text-destructive">{errors.password}</p>}
 							</div>
 							{isFirstRun && (
-								<div className="grid gap-1 relative">
-									<LockIcon className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+								<div className="grid gap-1.5 relative">
+									<LockIcon className="absolute left-3.5 top-3.5 h-4 w-4 text-muted-foreground/70 pointer-events-none" />
 									<Label className="sr-only" htmlFor="pass2">
 										<Trans>Confirm password</Trans>
 									</Label>
@@ -282,9 +288,12 @@ export function UserAuthForm({
 										type="password"
 										autoComplete="current-password"
 										disabled={isLoading || isOauthLoading}
-										className={cn("ps-9", errors?.password && "border-red-500")}
+										className={cn(
+											"ps-10 h-11 rounded-lg bg-muted/30 hover:bg-muted/50 focus:bg-background border-border/80 focus:border-primary transition-all text-sm",
+											errors?.password && "border-destructive focus:border-destructive"
+										)}
 									/>
-									{errors?.passwordConfirm && <p className="px-1 text-xs text-red-600">{errors.passwordConfirm}</p>}
+									{errors?.passwordConfirm && <p className="px-1 text-xs text-destructive">{errors.passwordConfirm}</p>}
 								</div>
 							)}
 							<div className="sr-only" aria-hidden="true">
@@ -304,7 +313,10 @@ export function UserAuthForm({
 									data-protonpass-ignore
 								/>
 							</div>
-							<button className={cn(buttonVariants())} disabled={isLoading}>
+							<button
+								className="h-11 w-full rounded-lg font-semibold text-sm flex items-center justify-center bg-gradient-to-r from-blue-600 via-teal-600 to-emerald-600 hover:from-blue-500 hover:via-teal-500 hover:to-emerald-500 text-white shadow-md shadow-blue-500/20 active:scale-[0.99] transition-all duration-200 cursor-pointer disabled:opacity-60"
+								disabled={isLoading}
+							>
 								{isLoading ? (
 									<LoaderCircle className="me-2 h-4 w-4 animate-spin" />
 								) : (
@@ -316,12 +328,12 @@ export function UserAuthForm({
 					</form>
 					{(isFirstRun || oauthEnabled || (otpEnabled && !mfaEnabled)) && (
 						// only show 'continue with' during onboarding or if we have auth providers
-						<div className="relative">
+						<div className="relative my-1">
 							<div className="absolute inset-0 flex items-center">
-								<span className="w-full border-t" />
+								<span className="w-full border-t border-border/60" />
 							</div>
 							<div className="relative flex justify-center text-xs uppercase">
-								<span className="bg-background px-2 text-muted-foreground">
+								<span className="bg-card px-3 text-[11px] font-semibold text-muted-foreground/70 tracking-wider">
 									<Trans>Or continue with</Trans>
 								</span>
 							</div>
@@ -332,7 +344,14 @@ export function UserAuthForm({
 			{/* hide OTP button if MFA is enabled (it will be used as MFA) */}
 			{otpEnabled && !mfaEnabled && (
 				<div className="grid gap-2 -mt-1">
-					<Link href="/request-otp" type="button" className={cn(buttonVariants({ variant: "outline" }), "flex gap-2")}>
+					<Link
+						href="/request-otp"
+						type="button"
+						className={cn(
+							buttonVariants({ variant: "outline" }),
+							"h-10 rounded-lg border-border/70 bg-muted/20 hover:bg-muted/50 transition-all flex gap-2 text-xs font-medium"
+						)}
+					>
 						<KeyIcon className="size-4" />
 						<Trans>One-time password</Trans>
 					</Link>
@@ -344,10 +363,14 @@ export function UserAuthForm({
 						<button
 							key={provider.name}
 							type="button"
-							className={cn(buttonVariants({ variant: "outline" }), {
-								"justify-self-center": !passwordEnabled,
-								"px-5": !passwordEnabled,
-							})}
+							className={cn(
+								buttonVariants({ variant: "outline" }),
+								"h-10 rounded-lg border-border/70 bg-muted/20 hover:bg-muted/50 transition-all text-xs font-medium",
+								{
+									"justify-self-center": !passwordEnabled,
+									"px-5": !passwordEnabled,
+								}
+							)}
 							onClick={() => loginWithOauth(provider)}
 							disabled={isLoading || isOauthLoading}
 						>
@@ -358,9 +381,6 @@ export function UserAuthForm({
 									className="me-2 h-4 w-4 dark:brightness-0 dark:invert"
 									src={getAuthProviderIcon(provider)}
 									alt=""
-									// onError={(e) => {
-									// 	e.currentTarget.src = "/static/lock.svg"
-									// }}
 								/>
 							)}
 							<span className="translate-y-px">{provider.displayName}</span>
@@ -372,7 +392,13 @@ export function UserAuthForm({
 				// only show GitHub button / dialog during onboarding
 				<Dialog>
 					<DialogTrigger asChild>
-						<button type="button" className={cn(buttonVariants({ variant: "outline" }))}>
+						<button
+							type="button"
+							className={cn(
+								buttonVariants({ variant: "outline" }),
+								"h-10 rounded-lg border-border/70 bg-muted/20 hover:bg-muted/50 transition-all text-xs font-medium"
+							)}
+						>
 							<img className="me-2 h-4 w-4 dark:invert" src={prependBasePath("/_/images/oauth2/github.svg")} alt="" />
 							<span className="translate-y-px">GitHub</span>
 						</button>
@@ -406,7 +432,7 @@ export function UserAuthForm({
 			{passwordEnabled && !isFirstRun && (
 				<Link
 					href={getPagePath($router, "forgot_password")}
-					className="text-sm mx-auto hover:text-brand underline underline-offset-4 opacity-70 hover:opacity-100 transition-opacity"
+					className="text-xs text-center text-muted-foreground hover:text-foreground underline underline-offset-4 opacity-75 hover:opacity-100 transition-opacity"
 				>
 					<Trans>Forgot password?</Trans>
 				</Link>
