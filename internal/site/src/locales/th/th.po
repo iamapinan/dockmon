@@ -1,0 +1,2604 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-11-12 12:19+0700\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: th\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#. placeholder {0}: newVersion.v
+#: src/components/footer-repo-link.tsx
+msgctxt "New version available"
+msgid "{0} available"
+msgstr "มีเวอร์ชัน {0} ใหม่อัปเดต"
+
+#. placeholder {0}: table.getFilteredSelectedRowModel().rows.length
+#. placeholder {1}: table.getFilteredRowModel().rows.length
+#: src/components/ui/data-table-pagination.tsx
+msgid "{0} of {1} row(s) selected."
+msgstr "เลือกแล้ว {0} จาก {1} แถว"
+
+#. placeholder {0}: table.getFilteredRowModel().rows.length
+#: src/components/ui/data-table-pagination.tsx
+msgid "{0} row(s)"
+msgstr "{0} แถว"
+
+#. placeholder {0}: selectedIds.size
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "{0} selected"
+msgstr "เลือกแล้ว {0} รายการ"
+
+#: src/components/active-alerts.tsx
+msgid "{alertCount, plural, one {# active alert} other {# active alerts}}"
+msgstr "{alertCount, plural, other {# การแจ้งเตือนที่ทำงานอยู่}}"
+
+#: src/components/active-alerts.tsx
+msgid "{alertCount, plural, one {# alert is currently triggered} other {# alerts are currently triggered}}"
+msgstr "{alertCount, plural, other {# การแจ้งเตือนกำลังถูกกระตุ้น}}"
+
+#: src/components/routes/system/info-bar.tsx
+msgid "{cores, plural, one {# core} other {# cores}}"
+msgstr "{cores, plural, other {# คอร์}}"
+
+#: src/lib/utils.ts
+msgid "{count, plural, one {{countString} day} other {{countString} days}}"
+msgstr "{count, plural, other {{countString} วัน}}"
+
+#: src/lib/utils.ts
+msgid "{count, plural, one {{countString} hour} other {{countString} hours}}"
+msgstr "{count, plural, other {{countString} ชั่วโมง}}"
+
+#: src/lib/utils.ts
+msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
+msgstr "{count, plural, other {{countString} นาที}}"
+
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+msgid "{daysLeft, plural, one {# day} other {# days}}"
+msgstr "{daysLeft, plural, other {# วัน}}"
+
+#: src/components/routes/system/charts/disk-charts.tsx
+msgid "{diskName} I/O"
+msgstr "{diskName} I/O"
+
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "{numFailed, plural, one {# failed service} other {# failed services}}"
+msgstr "{numFailed, plural, other {# บริการที่ล้มเหลว}}"
+
+#: src/components/active-alerts.tsx
+msgid "{systemCount, plural, one {Across # system} other {Across # systems}}"
+msgstr "{systemCount, plural, other {จากทั้งหมด # ระบบ}}"
+
+#: src/components/routes/system/info-bar.tsx
+msgid "{threads, plural, one {# thread} other {# threads}}"
+msgstr "{threads, plural, other {# เธรด}}"
+
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "{total, plural, one {# update} other {# updates}}"
+msgstr "{total, plural, other {# อัปเดต}}"
+
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "{totalCount, plural, one {# service} other {# services}}"
+msgstr "{totalCount, plural, other {# บริการ}}"
+
+#: src/components/alerts-history-columns.tsx
+msgid "{value, plural, one {# day} other {# days}}"
+msgstr "{value, plural, other {# วัน}}"
+
+#: src/lib/utils.ts
+msgid "1 hour"
+msgstr "1 ชั่วโมง"
+
+#. Load average
+#: src/components/routes/system/charts/load-average-chart.tsx
+msgid "1 min"
+msgstr "1 นาที"
+
+#: src/lib/utils.ts
+msgid "1 minute"
+msgstr "1 นาที"
+
+#: src/lib/utils.ts
+msgid "1 week"
+msgstr "1 สัปดาห์"
+
+#: src/lib/utils.ts
+msgid "12 hours"
+msgstr "12 ชั่วโมง"
+
+#. Load average
+#: src/components/routes/system/charts/load-average-chart.tsx
+msgid "15 min"
+msgstr "15 นาที"
+
+#: src/lib/utils.ts
+msgid "24 hours"
+msgstr "24 ชั่วโมง"
+
+#: src/lib/utils.ts
+msgid "30 days"
+msgstr "30 วัน"
+
+#. Load average
+#: src/components/routes/system/charts/load-average-chart.tsx
+msgid "5 min"
+msgstr "5 นาที"
+
+#. Table column
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "Actions"
+msgstr "การดำเนินการ"
+
+#: src/components/alerts-history-columns.tsx
+#: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Active"
+msgstr "ใช้งานอยู่"
+
+#: src/components/active-alerts.tsx
+msgid "Active Alerts"
+msgstr "การแจ้งเตือนที่ทำงานอยู่"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Active state"
+msgstr "สถานะการทำงาน"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add"
+msgstr "เพิ่ม"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Add {foo}"
+msgstr "เพิ่ม {foo}"
+
+#: src/components/add-system.tsx
+#: src/components/add-system.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+msgid "Add System"
+msgstr "เพิ่มระบบ"
+
+#: src/components/routes/settings/notifications.tsx
+msgid "Add URL"
+msgstr "เพิ่ม URL"
+
+#: src/components/routes/settings/general.tsx
+msgid "Adjust display options for charts."
+msgstr "ปรับแต่งตัวเลือกการแสดงผลกราฟ"
+
+#: src/components/routes/settings/general.tsx
+msgid "Adjust the width of the main layout"
+msgstr "ปรับความกว้างของเลย์เอาต์หลัก"
+
+#: src/components/command-palette.tsx
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+msgid "Admin"
+msgstr "ผู้ดูแลระบบ"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "After"
+msgstr "หลังจาก"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
+msgstr "หลังจากตั้งค่าตัวแปรสภาพแวดล้อมแล้ว ให้รีสตาร์ท DockMon hub เพื่อให้การเปลี่ยนแปลงมีผล"
+
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "Agent"
+msgstr "เอเจนต์"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/routes/settings/layout.tsx
+msgid "Alert History"
+msgstr "ประวัติการแจ้งเตือน"
+
+#: src/components/alerts/alert-button.tsx
+#: src/components/alerts/alerts-sheet.tsx
+#: src/components/system-actions-button.tsx
+msgid "Alerts"
+msgstr "การแจ้งเตือน"
+
+#: src/components/command-palette.tsx
+#: src/components/containers-table/containers-table.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+msgid "All Containers"
+msgstr "คอนเทนเนอร์ทั้งหมด"
+
+#: src/components/alerts/alerts-sheet.tsx
+#: src/components/command-palette.tsx
+#: src/components/routes/home.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "All Systems"
+msgstr "ระบบทั้งหมด"
+
+#: src/components/system-actions-button.tsx
+msgid "Are you sure you want to delete {name}?"
+msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบ {name}?"
+
+#: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/routes/settings/alerts-history-data-table.tsx
+msgid "Are you sure?"
+msgstr "คุณแน่ใจหรือไม่?"
+
+#: src/components/copy-to-clipboard.tsx
+msgid "Automatic copy requires a secure context."
+msgstr "การคัดลอกอัตโนมัติต้องการบริบทที่ปลอดภัย (HTTPS)"
+
+#. Package version available to install
+#: src/components/routes/system/package-updates-table.tsx
+msgid "Available"
+msgstr "พร้อมใช้งาน"
+
+#: src/components/routes/system/storage-pools-table.tsx
+msgctxt "Disk space available"
+msgid "Available"
+msgstr "พร้อมใช้งาน"
+
+#: src/components/routes/system/chart-card.tsx
+msgid "Average"
+msgstr "เฉลี่ย"
+
+#: src/components/routes/system/charts/cpu-charts.tsx
+msgid "Average CPU utilization of containers"
+msgstr "การใช้งาน CPU เฉลี่ยของคอนเทนเนอร์"
+
+#: src/components/alerts/alerts-sheet.tsx
+msgid "Average drops below <0>{value}{unitLabel}</0>"
+msgstr "ค่าเฉลี่ยลดลงต่ำกว่า <0>{value}{unitLabel}</0>"
+
+#: src/components/alerts/alerts-sheet.tsx
+msgid "Average exceeds <0>{value}{unitLabel}</0>"
+msgstr "ค่าเฉลี่ยเกิน <0>{value}{unitLabel}</0>"
+
+#: src/components/routes/system/disk-io-sheet.tsx
+msgid "Average number of I/O operations waiting to be serviced"
+msgstr "จำนวนเฉลี่ยของการดำเนินการ I/O ที่รอการประมวลผล"
+
+#: src/components/routes/system/charts/gpu-charts.tsx
+msgid "Average power consumption of GPUs"
+msgstr "การใช้พลังงานเฉลี่ยของ GPU"
+
+#: src/components/routes/system/disk-io-sheet.tsx
+msgctxt "Disk I/O average operation time (iostat await)"
+msgid "Average queue to completion time per operation"
+msgstr "เวลาเฉลี่ยจากคิวจนเสร็จสิ้นต่อการดำเนินการ"
+
+#: src/components/routes/system/charts/monitors-charts.tsx
+msgid "Average response time"
+msgstr "เวลาตอบสนองเฉลี่ย"
+
+#: src/components/routes/system/charts/cpu-charts.tsx
+msgid "Average system-wide CPU utilization"
+msgstr "การใช้งาน CPU เฉลี่ยทั้งระบบ"
+
+#. placeholder {0}: gpu.n
+#: src/components/routes/system/charts/gpu-charts.tsx
+msgid "Average utilization of {0}"
+msgstr "การใช้งานเฉลี่ยของ {0}"
+
+#: src/components/routes/system/charts/gpu-charts.tsx
+msgid "Average utilization of GPU engines"
+msgstr "การใช้งานเฉลี่ยของ GPU engines"
+
+#: src/components/routes/system/charts/monitors-charts.tsx
+msgid "Average, minimum, and maximum response time"
+msgstr "เวลาตอบสนองเฉลี่ย ต่ำสุด และสูงสุด"
+
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+msgid "Avg 1h"
+msgstr "เฉลี่ย 1 ชม."
+
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+msgid "Backups"
+msgstr "การสำรองข้อมูล"
+
+#: src/components/routes/system/charts/network-charts.tsx
+#: src/lib/alerts.ts
+msgid "Bandwidth"
+msgstr "แบนด์วิดท์"
+
+#. Battery label in systems table header
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "Bat"
+msgstr "แบต"
+
+#: src/components/routes/system/charts/sensor-charts.tsx
+#: src/components/routes/system/charts/sensor-charts.tsx
+#: src/lib/alerts.ts
+msgid "Battery"
+msgstr "แบตเตอรี่"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Became active"
+msgstr "เริ่มทำงานแล้ว"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Became inactive"
+msgstr "หยุดทำงานแล้ว"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Before"
+msgstr "ก่อน"
+
+#. placeholder {0}: alert.value
+#. placeholder {1}: info.unit
+#. placeholder {2}: alert.min
+#: src/components/active-alerts.tsx
+msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
+msgstr "ต่ำกว่า {0}{1} ในช่วง {2, plural, other {# นาที}} ที่ผ่านมา"
+
+#: src/components/login/auth-form.tsx
+msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
+msgstr "รองรับ OpenID Connect และผู้ให้บริการพิสูจน์ตัวตน OAuth2 หลายราย"
+
+#: src/components/routes/settings/notifications.tsx
+msgid "Beszel uses <0>Shoutrrr</0> to integrate with popular notification services."
+msgstr "ใช้ <0>Shoutrrr</0> เพื่อเชื่อมต่อกับบริการแจ้งเตือนยอดนิยม"
+
+#: src/components/add-system.tsx
+msgid "Binary"
+msgstr "ไบนารี (1024)"
+
+#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/general.tsx
+msgid "Bits (Kbps, Mbps, Gbps)"
+msgstr "บิต (Kbps, Mbps, Gbps)"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Boot state"
+msgstr "สถานะการบูต"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Bulk Add"
+msgstr "เพิ่มพร้อมกันหลายรายการ"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Bulk Add {foo}"
+msgstr "เพิ่ม {foo} พร้อมกันหลายรายการ"
+
+#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/general.tsx
+msgid "Bytes (KB/s, MB/s, GB/s)"
+msgstr "ไบต์ (KB/s, MB/s, GB/s)"
+
+#: src/components/routes/system/charts/memory-charts.tsx
+msgid "Cache / Buffers"
+msgstr "แคช / บัฟเฟอร์"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Can reload"
+msgstr "สามารถโหลดซ้ำได้"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Can start"
+msgstr "สามารถเริ่มทำงานได้"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Can stop"
+msgstr "สามารถหยุดทำงานได้"
+
+#: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/system-actions-button.tsx
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Capabilities"
+msgstr "ความสามารถ"
+
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+msgid "Capacity"
+msgstr "ความจุ"
+
+#: src/components/routes/settings/config-yaml.tsx
+msgid "Caution - potential data loss"
+msgstr "ข้อควรระวัง - อาจสูญเสียข้อมูล"
+
+#: src/components/routes/settings/general.tsx
+msgid "Celsius (°C)"
+msgstr "เซลเซียส (°C)"
+
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+msgid "Certificate"
+msgstr "ใบรับรอง"
+
+#: src/lib/alerts.ts
+msgid "Certificate Expiration"
+msgstr "วันหมดอายุใบรับรอง"
+
+#: src/components/network-monitors-table/network-monitors-table.tsx
+msgid "Certificate expired {expires}"
+msgstr "ใบรับรองหมดอายุแล้ว {expires}"
+
+#: src/components/network-monitors-table/network-monitors-table.tsx
+msgid "Certificate expires {expires}"
+msgstr "ใบรับรองจะหมดอายุ {expires}"
+
+#. Version change
+#: src/components/routes/system/package-updates-table.tsx
+msgid "Change"
+msgstr "เปลี่ยน"
+
+#: src/components/routes/settings/general.tsx
+msgid "Change display units for metrics."
+msgstr "เปลี่ยนหน่วยการแสดงผลสำหรับตัววัด"
+
+#: src/components/routes/settings/general.tsx
+msgid "Change general application options."
+msgstr "เปลี่ยนการตั้งค่าทั่วไปของแอปพลิเคชัน"
+
+#: src/components/routes/system/charts/sensor-charts.tsx
+msgid "Charge"
+msgstr "ประจุไฟ"
+
+#. Context: Battery state
+#: src/lib/i18n.ts
+msgid "Charging"
+msgstr "กำลังชาร์จ"
+
+#: src/components/routes/settings/general.tsx
+msgid "Chart options"
+msgstr "ตัวเลือกกราฟ"
+
+#: src/components/routes/system/info-bar.tsx
+msgid "Chart width"
+msgstr "ความกว้างของกราฟ"
+
+#: src/components/login/forgot-pass-form.tsx
+msgid "Check {email} for a reset link."
+msgstr "โปรดตรวจสอบลิงก์รีเซ็ตรหัสผ่านที่ {email}"
+
+#: src/components/routes/settings/layout.tsx
+msgid "Check logs for more details."
+msgstr "ตรวจสอบบันทึก (logs) เพื่อดูรายละเอียดเพิ่มเติม"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Check your monitoring service"
+msgstr "ตรวจสอบบริการติดตามผลของคุณ"
+
+#: src/components/routes/settings/notifications.tsx
+msgid "Check your notification service"
+msgstr "ตรวจสอบบริการแจ้งเตือนของคุณ"
+
+#. placeholder {0}: formatShortDate(new Date(data.checkedAt * 1000).toISOString())
+#: src/components/routes/system/package-updates-table.tsx
+msgid "Checked {0}"
+msgstr "ตรวจสอบแล้ว {0}"
+
+#: src/components/routes/system/storage-pools-table.tsx
+msgid "Checksum errors"
+msgstr "ข้อผิดพลาด Checksum"
+
+#: src/components/containers-table/containers-table.tsx
+#: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/routes/system/package-updates-table.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Clear"
+msgstr "ล้าง"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Clear all"
+msgstr "ล้างทั้งหมด"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Clear matches"
+msgstr "ล้างรายการที่ตรงกัน"
+
+#: src/components/containers-table/containers-table.tsx
+msgid "Click on a container to view more information."
+msgstr "คลิกที่คอนเทนเนอร์เพื่อดูข้อมูลเพิ่มเติม"
+
+#: src/components/routes/system/smart-table.tsx
+msgid "Click on a device to view more information."
+msgstr "คลิกที่อุปกรณ์เพื่อดูข้อมูลเพิ่มเติม"
+
+#: src/components/routes/system/storage-pools-table.tsx
+msgid "Click on a pool to view vdev and dataset details."
+msgstr "คลิกที่ pool เพื่อดูรายละเอียด vdev และ dataset"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Click on a system to view more information."
+msgstr "คลิกที่ระบบเพื่อดูข้อมูลเพิ่มเติม"
+
+#: src/components/ui/input-copy.tsx
+msgid "Click to copy"
+msgstr "คลิกเพื่อคัดลอก"
+
+#: src/components/login/forgot-pass-form.tsx
+#: src/components/login/forgot-pass-form.tsx
+msgid "Command line instructions"
+msgstr "คำแนะนำสำหรับบรรทัดคำสั่ง"
+
+#: src/components/network-monitors-table/network-monitors-table.tsx
+msgid "Compare with other systems"
+msgstr "เปรียบเทียบกับระบบอื่น"
+
+#: src/components/network-monitors-table/network-monitors-table.tsx
+msgid "Compare with other targets"
+msgstr "เปรียบเทียบกับเป้าหมายอื่น"
+
+#: src/components/routes/settings/notifications.tsx
+msgid "Configure how you receive alert notifications."
+msgstr "กำหนดค่าช่องทางการรับการแจ้งเตือน"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Configure response monitoring from this agent."
+msgstr "กำหนดค่าการติดตามการตอบสนองจากเอเจนต์นี้"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/auth-form.tsx
+msgid "Confirm password"
+msgstr "ยืนยันรหัสผ่าน"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Conflicts"
+msgstr "ข้อขัดแย้ง"
+
+#: src/components/active-alerts.tsx
+msgid "Connection is down"
+msgstr "การเชื่อมต่อขัดข้อง"
+
+#: src/lib/alerts.ts
+msgid "Container"
+msgstr "คอนเทนเนอร์"
+
+#: src/lib/alerts.ts
+msgid "Container Health"
+msgstr "สุขภาพคอนเทนเนอร์"
+
+#: src/components/routes/system.tsx
+msgid "Containers"
+msgstr "คอนเทนเนอร์"
+
+#: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/system-actions-button.tsx
+msgid "Continue"
+msgstr "ดำเนินการต่อ"
+
+#: src/lib/utils.ts
+msgid "Copied to clipboard"
+msgstr "คัดลอกไปยังคลิปบอร์ดแล้ว"
+
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+msgid "Copy bulk config"
+msgstr "คัดลอกการกำหนดค่าแบบชุด"
+
+#: src/components/add-system.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgctxt "Button to copy docker compose file content"
+msgid "Copy docker compose"
+msgstr "คัดลอก docker compose"
+
+#: src/components/add-system.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgctxt "Button to copy docker run command"
+msgid "Copy docker run"
+msgstr "คัดลอกคำสั่ง docker run"
+
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgctxt "Environment variables"
+msgid "Copy env"
+msgstr "คัดลอกตัวแปรสภาพแวดล้อม"
+
+#: src/components/alerts/alerts-sheet.tsx
+msgctxt "Copy alerts from another system"
+msgid "Copy from"
+msgstr "คัดลอกจาก"
+
+#: src/components/system-actions-button.tsx
+msgid "Copy host"
+msgstr "คัดลอกโฮสต์"
+
+#: src/components/add-system.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Copy Linux command"
+msgstr "คัดลอกคำสั่ง Linux"
+
+#: src/components/system-actions-button.tsx
+msgid "Copy name"
+msgstr "คัดลอกชื่อ"
+
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Copy public key"
+msgstr "คัดลอกคีย์สาธารณะ"
+
+#: src/components/copy-to-clipboard.tsx
+msgid "Copy text"
+msgstr "คัดลอกข้อความ"
+
+#: src/components/add-system.tsx
+msgid "Copy the installation command for the agent below, or register agents automatically with a <0>universal token</0>."
+msgstr "คัดลอกคำสั่งติดตั้งสำหรับเอเจนต์ด้านล่าง หรือลงทะเบียนเอเจนต์โดยอัตโนมัติด้วย <0>โทเคนสากล (universal token)</0>"
+
+#: src/components/add-system.tsx
+msgid "Copy the<0>docker-compose.yml</0> content for the agent below, or register agents automatically with a <1>universal token</1>."
+msgstr "คัดลอกเนื้อหา <0>docker-compose.yml</0> ด้านล่าง หรือลงทะเบียนเอเจนต์โดยอัตโนมัติด้วย <1>โทเคนสากล (universal token)</1>"
+
+#: src/components/token-value.tsx
+#: src/components/token-value.tsx
+msgid "Copy token"
+msgstr "คัดลอกโทเคน"
+
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Copy YAML"
+msgstr "คัดลอก YAML"
+
+#: src/components/routes/system.tsx
+msgctxt "Core system metrics"
+msgid "Core"
+msgstr "คอร์"
+
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "CPU"
+msgstr "CPU"
+
+#: src/components/routes/system/cpu-sheet.tsx
+msgid "CPU Cores"
+msgstr "จำนวนคอร์ CPU"
+
+#: src/lib/alerts.ts
+msgid "CPU I/O Wait"
+msgstr "CPU รอคอย I/O"
+
+#: src/components/systemd-table/systemd-table-columns.tsx
+msgid "CPU Peak"
+msgstr "จุดสูงสุดของ CPU"
+
+#: src/lib/alerts.ts
+msgid "CPU Steal Time"
+msgstr "CPU Steal Time"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "CPU time"
+msgstr "เวลา CPU"
+
+#: src/components/routes/system/cpu-sheet.tsx
+msgid "CPU Time Breakdown"
+msgstr "สัดส่วนการใช้เวลาของ CPU"
+
+#: src/components/routes/system/charts/cpu-charts.tsx
+#: src/components/routes/system/charts/cpu-charts.tsx
+#: src/components/routes/system/cpu-sheet.tsx
+#: src/lib/alerts.ts
+msgid "CPU Usage"
+msgstr "การใช้งาน CPU"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Create"
+msgstr "สร้าง"
+
+#: src/components/login/auth-form.tsx
+msgid "Create account"
+msgstr "สร้างบัญชีผู้ใช้"
+
+#. Context: date created
+#: src/components/alerts-history-columns.tsx
+msgid "Created"
+msgstr "สร้างเมื่อ"
+
+#: src/components/routes/settings/general.tsx
+msgid "Critical (%)"
+msgstr "ระดับวิกฤต (%)"
+
+#: src/components/routes/system/disk-io-sheet.tsx
+msgid "Cumulative data read since boot"
+msgstr "ข้อมูลสะสมที่อ่านตั้งแต่บูตระบบ"
+
+#: src/components/routes/system/disk-io-sheet.tsx
+msgid "Cumulative data written since boot"
+msgstr "ข้อมูลสะสมที่เขียนตั้งแต่บูตระบบ"
+
+#: src/components/routes/system/network-sheet.tsx
+msgid "Cumulative Download"
+msgstr "ดาวน์โหลดสะสม"
+
+#: src/components/routes/system/disk-io-sheet.tsx
+msgid "Cumulative Read"
+msgstr "การอ่านสะสม"
+
+#: src/components/routes/system/network-sheet.tsx
+msgid "Cumulative Upload"
+msgstr "อัปโหลดสะสม"
+
+#: src/components/routes/system/disk-io-sheet.tsx
+msgid "Cumulative Write"
+msgstr "การเขียนสะสม"
+
+#. Current package version
+#: src/components/routes/system/package-updates-table.tsx
+msgid "Current"
+msgstr "ปัจจุบัน"
+
+#. Context: Battery state
+#. Context: Battery state
+#: src/components/routes/system/charts/sensor-charts.tsx
+#: src/components/routes/system/charts/sensor-charts.tsx
+msgid "Current state"
+msgstr "สถานะปัจจุบัน"
+
+#. Power Cycles
+#: src/components/routes/system/smart-table.tsx
+msgid "Cycles"
+msgstr "รอบ (Cycles)"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Daily"
+msgstr "รายวัน"
+
+#: src/components/routes/system/info-bar.tsx
+msgctxt "Default system layout option"
+msgid "Default"
+msgstr "ค่าเริ่มต้น"
+
+#: src/components/routes/settings/general.tsx
+msgid "Default time period"
+msgstr "ช่วงเวลาเริ่มต้น"
+
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/system-actions-button.tsx
+msgid "Delete"
+msgstr "ลบ"
+
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Delete fingerprint"
+msgstr "ลบฟิงเกอร์พริ้นต์"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Description"
+msgstr "คำอธิบาย"
+
+#: src/components/containers-table/containers-table.tsx
+msgid "Detail"
+msgstr "รายละเอียด"
+
+#: src/components/routes/system/smart-table.tsx
+msgid "Device"
+msgstr "อุปกรณ์"
+
+#. Context: Battery state
+#: src/lib/i18n.ts
+msgid "Discharging"
+msgstr "กำลังคายประจุ"
+
+#: src/components/routes/system.tsx
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "Disk"
+msgstr "ดิสก์"
+
+#: src/components/routes/settings/general.tsx
+msgid "Disk unit"
+msgstr "หน่วยของดิสก์"
+
+#: src/components/routes/system/charts/disk-charts.tsx
+#: src/lib/alerts.ts
+msgid "Disk Usage"
+msgstr "การใช้งานดิสก์"
+
+#: src/components/routes/system/charts/disk-charts.tsx
+msgid "Disk usage of {extraFsName}"
+msgstr "การใช้งานดิสก์ของ {extraFsName}"
+
+#: src/components/alert-banner-sheet.tsx
+#: src/components/alert-banner-sheet.tsx
+msgid "Dismiss"
+msgstr "ปิดข้อความ"
+
+#: src/components/routes/system/info-bar.tsx
+msgctxt "Layout display options"
+msgid "Display"
+msgstr "การแสดงผล"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "DNS Server"
+msgstr "เซิร์ฟเวอร์ DNS"
+
+#: src/components/routes/system/charts/cpu-charts.tsx
+msgid "Docker CPU Usage"
+msgstr "การใช้งาน CPU ของ Docker"
+
+#: src/components/routes/system/charts/memory-charts.tsx
+msgid "Docker Memory Usage"
+msgstr "การใช้งานหน่วยความจำของ Docker"
+
+#: src/components/routes/system/charts/network-charts.tsx
+msgid "Docker Network I/O"
+msgstr "เครือข่าย I/O ของ Docker"
+
+#: src/components/command-palette.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Documentation"
+msgstr "เอกสารคู่มือ"
+
+#. Context: System is down
+#: src/components/alerts-history-columns.tsx
+#: src/components/routes/system/info-bar.tsx
+#: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/alerts.ts
+msgid "Down"
+msgstr "ออฟไลน์"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Down ({downSystemsLength})"
+msgstr "ออฟไลน์ ({downSystemsLength})"
+
+#: src/components/routes/system/network-sheet.tsx
+msgid "Download"
+msgstr "ดาวน์โหลด"
+
+#: src/components/alerts-history-columns.tsx
+msgid "Duration"
+msgstr "ระยะเวลา"
+
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/system-actions-button.tsx
+msgid "Edit"
+msgstr "แก้ไข"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Edit {foo}"
+msgstr "แก้ไข {foo}"
+
+#: src/components/add-system.tsx
+msgid "Edit System"
+msgstr "แก้ไขระบบ"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/forgot-pass-form.tsx
+#: src/components/login/otp-forms.tsx
+msgid "Email"
+msgstr "อีเมล"
+
+#: src/components/routes/settings/notifications.tsx
+msgid "Email notifications"
+msgstr "การแจ้งเตือนทางอีเมล"
+
+#. Context: Battery state
+#: src/lib/i18n.ts
+msgid "Empty"
+msgstr "ว่างเปล่า"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "End Time"
+msgstr "เวลาสิ้นสุด"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Endpoint URL"
+msgstr "URL ปลายทาง"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Endpoint URL to ping (required)"
+msgstr "URL ปลายทางสำหรับส่ง ping (จำเป็น)"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Enter a domain name to look up. Put the resolver's IP in DNS Server."
+msgstr "ใส่ชื่อโดเมนที่ต้องการค้นหา ระบุ IP ของ resolver ในช่อง DNS Server"
+
+#: src/components/login/login.tsx
+msgid "Enter email address to reset password"
+msgstr "ใส่อีเมลเพื่อรีเซ็ตรหัสผ่าน"
+
+#: src/components/routes/settings/notifications.tsx
+msgid "Enter email address..."
+msgstr "ใส่อีเมล..."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter your one-time password."
+msgstr "ใส่รหัสผ่านแบบใช้ครั้งเดียว (OTP)"
+
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Ephemeral"
+msgstr "ชั่วคราว (Ephemeral)"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/routes/settings/config-yaml.tsx
+#: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/notifications.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Error"
+msgstr "ข้อผิดพลาด"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Example:"
+msgstr "ตัวอย่าง:"
+
+#. placeholder {0}: alert.value
+#. placeholder {1}: info.unit
+#. placeholder {2}: alert.min
+#: src/components/active-alerts.tsx
+msgid "Exceeds {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
+msgstr "เกิน {0}{1} ในช่วง {2, plural, other {# นาที}} ที่ผ่านมา"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Exec main PID"
+msgstr "PID หลักที่ดำเนินการ"
+
+#: src/components/routes/settings/config-yaml.tsx
+msgid "Existing systems not defined in <0>config.yml</0> will be deleted. Please make regular backups."
+msgstr "ระบบเดิมที่ไม่ได้ระบุใน <0>config.yml</0> จะถูกลบ โปรดสำรองข้อมูลอย่างสม่ำเสมอ"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Exited active"
+msgstr "หยุดการทำงานแล้ว"
+
+#: src/components/alerts-history-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+msgid "Expired"
+msgstr "หมดอายุแล้ว"
+
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Expires after one hour or on hub restart."
+msgstr "หมดอายุหลังจาก 1 ชั่วโมงหรือเมื่อรีสตาร์ท hub"
+
+#: src/components/alerts/alerts-sheet.tsx
+msgid "Expires within <0>{value, plural, one {# day} other {# days}}</0>"
+msgstr "หมดอายุภายใน <0>{value, plural, other {# วัน}}</0>"
+
+#: src/components/routes/settings/alerts-history-data-table.tsx
+msgid "Export"
+msgstr "ส่งออก"
+
+#: src/components/routes/settings/config-yaml.tsx
+msgid "Export configuration"
+msgstr "ส่งออกการกำหนดค่า"
+
+#: src/components/routes/settings/config-yaml.tsx
+msgid "Export your current systems configuration."
+msgstr "ส่งออกการกำหนดค่าระบบปัจจุบันของคุณ"
+
+#: src/components/routes/settings/general.tsx
+msgid "Fahrenheit (°F)"
+msgstr "ฟาเรนไฮต์ (°F)"
+
+#: src/components/routes/system/smart-table.tsx
+msgid "Failed Attributes:"
+msgstr "แอตทริบิวต์ที่ล้มเหลว:"
+
+#: src/lib/alerts.ts
+msgid "Failed Services"
+msgstr "บริการที่ล้มเหลว"
+
+#: src/lib/api.ts
+msgid "Failed to authenticate"
+msgstr "การยืนยันตัวตนล้มเหลว"
+
+#: src/components/network-monitors-table/network-monitors-table.tsx
+msgid "Failed to delete monitors."
+msgstr "ไม่สามารถลบการติดตามได้"
+
+#: src/components/systemd-table/systemd-table.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Failed to load logs."
+msgstr "ไม่สามารถโหลดบันทึกได้"
+
+#: src/components/routes/system/package-updates-table.tsx
+msgid "Failed to load package updates"
+msgstr "ไม่สามารถโหลดรายการอัปเดตแพ็กเกจได้"
+
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/notifications.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Failed to save settings"
+msgstr "บันทึกการตั้งค่าไม่สำเร็จ"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Failed to send heartbeat"
+msgstr "ส่ง heartbeat ไม่สำเร็จ"
+
+#: src/components/routes/settings/notifications.tsx
+msgid "Failed to send test notification"
+msgstr "ส่งการแจ้งเตือนทดสอบไม่สำเร็จ"
+
+#: src/components/alerts/alerts-sheet.tsx
+msgid "Failed to update alert"
+msgstr "อัปเดตการแจ้งเตือนไม่สำเร็จ"
+
+#: src/components/network-monitors-table/network-monitors-table.tsx
+msgid "Failed to update monitors."
+msgstr "อัปเดตการติดตามไม่สำเร็จ"
+
+#. placeholder {0}: statusTotals[ServiceStatus.Failed]
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Failed: {0}"
+msgstr "ล้มเหลว: {0}"
+
+#: src/components/routes/system/charts/sensor-charts.tsx
+msgid "Fans"
+msgstr "พัดลม"
+
+#: src/components/containers-table/containers-table.tsx
+#: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/routes/system/chart-card.tsx
+#: src/components/routes/system/package-updates-table.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Filter..."
+msgstr "กรองข้อมูล..."
+
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Fingerprint"
+msgstr "ฟิงเกอร์พริ้นต์"
+
+#: src/components/routes/system/smart-table.tsx
+msgid "Firmware"
+msgstr "เฟิร์มแวร์"
+
+#: src/components/alerts/alerts-sheet.tsx
+msgid "For <0>{min}</0> {min, plural, one {minute} other {minutes}}"
+msgstr "เป็นเวลา <0>{min}</0> {min, plural, other {นาที}}"
+
+#: src/components/login/auth-form.tsx
+msgid "Forgot password?"
+msgstr "ลืมรหัสผ่าน?"
+
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+msgctxt "Free space"
+msgid "Free"
+msgstr "ว่าง"
+
+#: src/components/add-system.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgctxt "Button to copy install command"
+msgid "FreeBSD command"
+msgstr "คำสั่งสำหรับ FreeBSD"
+
+#. Context: Battery state
+#: src/components/routes/system/info-bar.tsx
+#: src/lib/i18n.ts
+msgid "Full"
+msgstr "เต็ม"
+
+#: src/components/containers-table/containers-table.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Fullscreen"
+msgstr "เต็มหน้าจอ"
+
+#. Context: General settings
+#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/layout.tsx
+msgid "General"
+msgstr "ทั่วไป"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Global"
+msgstr "ส่วนกลาง"
+
+#: src/components/routes/system.tsx
+msgid "GPU"
+msgstr "GPU"
+
+#: src/components/routes/system/charts/gpu-charts.tsx
+msgid "GPU Engines"
+msgstr "GPU Engines"
+
+#: src/components/routes/system/charts/gpu-charts.tsx
+msgid "GPU Power Draw"
+msgstr "การใช้พลังงาน GPU"
+
+#: src/lib/alerts.ts
+msgid "GPU Usage"
+msgstr "การใช้งาน GPU"
+
+#: src/components/routes/system/info-bar.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Grid"
+msgstr "ตารางกริด"
+
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+msgid "Health"
+msgstr "สุขภาพ"
+
+#: src/components/routes/settings/layout.tsx
+msgid "Heartbeat"
+msgstr "Heartbeat"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Heartbeat Monitoring"
+msgstr "การติดตาม Heartbeat"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Heartbeat sent successfully"
+msgstr "ส่ง heartbeat สำเร็จแล้ว"
+
+#: src/components/logs-display.tsx
+msgid "Hide timestamps"
+msgstr "ซ่อนเวลา (timestamp)"
+
+#: src/components/token-value.tsx
+#: src/components/token-value.tsx
+msgid "Hide token"
+msgstr "ซ่อนโทเคน"
+
+#: src/components/add-system.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgctxt "Button to copy install command"
+msgid "Homebrew command"
+msgstr "คำสั่ง Homebrew"
+
+#: src/components/add-system.tsx
+msgid "Host / IP"
+msgstr "โฮสต์ / IP"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "HTTP Method"
+msgstr "วิธี HTTP (Method)"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "HTTP method: POST, GET, or HEAD (default: POST)"
+msgstr "วิธี HTTP: POST, GET, หรือ HEAD (ค่าเริ่มต้น: POST)"
+
+#: src/components/routes/system/disk-io-sheet.tsx
+msgctxt "Disk I/O average operation time (iostat await)"
+msgid "I/O Await"
+msgstr "รอคอย I/O"
+
+#: src/components/routes/system/disk-io-sheet.tsx
+msgctxt "Disk I/O total time spent on read/write"
+msgid "I/O Time"
+msgstr "เวลา I/O"
+
+#: src/components/routes/system/charts/disk-charts.tsx
+msgctxt "Percent of time the disk is busy with I/O"
+msgid "I/O Utilization"
+msgstr "การใช้งาน I/O"
+
+#. Context: Battery state
+#: src/lib/i18n.ts
+msgid "Idle"
+msgstr "ไม่ได้ใช้งาน (Idle)"
+
+#: src/components/login/forgot-pass-form.tsx
+msgid "If you've lost the password to your admin account, you may reset it using the following command."
+msgstr "หากคุณลืมรหัสผ่านบัญชีผู้ดูแลระบบ คุณสามารถรีเซ็ตได้โดยใช้คำสั่งต่อไปนี้"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Ignore TLS certificate errors"
+msgstr "ละเว้นข้อผิดพลาดใบรับรอง TLS"
+
+#: src/components/containers-table/containers-table-columns.tsx
+msgctxt "Docker image"
+msgid "Image"
+msgstr "อิมเมจ"
+
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+msgctxt "Docker image"
+msgid "Image update available"
+msgstr "มีอิมเมจใหม่อัปเดต"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Inactive"
+msgstr "ไม่ได้ทำงาน"
+
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Interval"
+msgstr "ช่วงเวลา"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Interval (seconds)"
+msgstr "ช่วงเวลา (วินาที)"
+
+#: src/components/login/auth-form.tsx
+msgid "Invalid email address."
+msgstr "ที่อยู่อีเมลไม่ถูกต้อง"
+
+#: src/components/routes/settings/general.tsx
+msgid "Language"
+msgstr "ภาษา"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Layout"
+msgstr "เลย์เอาต์"
+
+#: src/components/routes/settings/general.tsx
+msgid "Layout width"
+msgstr "ความกว้างเลย์เอาต์"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Lifecycle"
+msgstr "วงจรชีวิต"
+
+#: src/components/systemd-table/systemd-table.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "limit"
+msgstr "ขีดจำกัด"
+
+#: src/components/routes/system/charts/load-average-chart.tsx
+msgid "Load Average"
+msgstr "โหลดเฉลี่ย"
+
+#: src/lib/alerts.ts
+msgid "Load Average 15m"
+msgstr "โหลดเฉลี่ย 15 นาที"
+
+#: src/lib/alerts.ts
+msgid "Load Average 1m"
+msgstr "โหลดเฉลี่ย 1 นาที"
+
+#: src/lib/alerts.ts
+msgid "Load Average 5m"
+msgstr "โหลดเฉลี่ย 5 นาที"
+
+#. Short label for load average
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "Load Avg"
+msgstr "โหลดเฉลี่ย"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Load state"
+msgstr "สถานะการโหลด"
+
+#: src/components/systemd-table/systemd-table.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Loading..."
+msgstr "กำลังโหลด..."
+
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+msgid "Log Out"
+msgstr "ออกจากระบบ"
+
+#: src/components/login/login.tsx
+#: src/components/login/login.tsx
+msgid "Login"
+msgstr "เข้าสู่ระบบ"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/forgot-pass-form.tsx
+msgid "Login attempt failed"
+msgstr "การพยายามเข้าสู่ระบบล้มเหลว"
+
+#: src/components/command-palette.tsx
+#: src/components/containers-table/containers-table.tsx
+#: src/components/navbar.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Logs"
+msgstr "บันทึก (Logs)"
+
+#: src/components/routes/settings/notifications.tsx
+msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
+msgstr "กำลังมองหาที่สร้างการแจ้งเตือน? คลิกที่ไอคอนระฆัง <0/> ในตารางระบบ"
+
+#: src/components/routes/system/charts/monitors-charts.tsx
+msgctxt "Packet loss"
+msgid "Loss"
+msgstr "การสูญเสียแพ็กเก็ต (Loss)"
+
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+msgid "Loss 1h"
+msgstr "Loss 1 ชม."
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Main PID"
+msgstr "PID หลัก"
+
+#. Package version
+#: src/components/routes/system/package-updates-table.tsx
+msgid "Major"
+msgstr "สำคัญ (Major)"
+
+#: src/components/routes/settings/layout.tsx
+msgid "Manage display and notification preferences."
+msgstr "จัดการการตั้งค่าการแสดงผลและการแจ้งเตือน"
+
+#: src/components/add-system.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Manual setup instructions"
+msgstr "คำแนะนำการติดตั้งด้วยตนเอง"
+
+#. Chart select field. Please try to keep this short.
+#: src/components/routes/system/chart-card.tsx
+msgid "Max 1 min"
+msgstr "สูงสุด 1 นาที"
+
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+msgid "Max 1h"
+msgstr "สูงสุด 1 ชม."
+
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/routes/system/info-bar.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
+#: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "Memory"
+msgstr "หน่วยความจำ (RAM)"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Memory limit"
+msgstr "ขีดจำกัดหน่วยความจำ"
+
+#: src/components/systemd-table/systemd-table-columns.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Memory Peak"
+msgstr "หน่วยความจำสูงสุด"
+
+#: src/components/routes/system/charts/memory-charts.tsx
+#: src/lib/alerts.ts
+msgid "Memory Usage"
+msgstr "การใช้งานหน่วยความจำ"
+
+#: src/components/routes/system/charts/memory-charts.tsx
+msgid "Memory usage of containers"
+msgstr "การใช้งานหน่วยความจำของคอนเทนเนอร์"
+
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+msgid "Min 1h"
+msgstr "ต่ำสุด 1 ชม."
+
+#. Package version
+#: src/components/routes/system/package-updates-table.tsx
+msgid "Minor"
+msgstr "เล็กน้อย (Minor)"
+
+#. Device model
+#: src/components/routes/system/smart-table.tsx
+msgid "Model"
+msgstr "รุ่น"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Monitor"
+msgstr "การติดตาม"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Monitors created"
+msgstr "สร้างการติดตามแล้ว"
+
+#: src/components/routes/system/storage-pools-table.tsx
+msgid "Mountpoint"
+msgstr "จุดเมานต์"
+
+#: src/components/add-system.tsx
+#: src/components/alerts-history-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Name"
+msgstr "ชื่อ"
+
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "Net"
+msgstr "เครือข่าย"
+
+#: src/components/routes/system.tsx
+msgid "Network"
+msgstr "เครือข่าย"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Network Monitor"
+msgstr "การติดตามเครือข่าย"
+
+#: src/lib/alerts.ts
+msgid "Network Monitor Loss"
+msgstr "การสูญเสียแพ็กเก็ตของการติดตามเครือข่าย"
+
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/routes/monitors.tsx
+msgid "Network Monitors"
+msgstr "การติดตามเครือข่าย"
+
+#: src/components/routes/system/charts/network-charts.tsx
+msgid "Network traffic of containers"
+msgstr "ทราฟฟิกเครือข่ายของคอนเทนเนอร์"
+
+#: src/components/routes/system/charts/network-charts.tsx
+#: src/components/routes/system/network-sheet.tsx
+#: src/components/routes/system/network-sheet.tsx
+#: src/components/routes/system/network-sheet.tsx
+msgid "Network traffic of public interfaces"
+msgstr "ทราฟฟิกเครือข่ายของอินเทอร์เฟซสาธารณะ"
+
+#. Context: Bytes or bits
+#: src/components/routes/settings/general.tsx
+msgid "Network unit"
+msgstr "หน่วยเครือข่าย"
+
+#: src/components/systemd-table/systemd-table.tsx
+#: src/components/systemd-table/systemd-table.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "No"
+msgstr "ไม่"
+
+#: src/components/routes/system/storage-pools-table.tsx
+msgid "No detail data for this pool."
+msgstr "ไม่มีข้อมูลรายละเอียดสำหรับ pool นี้"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "No logs found."
+msgstr "ไม่พบบันทึก (logs)"
+
+#: src/components/command-palette.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "No results found."
+msgstr "ไม่พบผลลัพธ์"
+
+#: src/components/containers-table/containers-table.tsx
+#: src/components/containers-table/containers-table.tsx
+#: src/components/containers-table/containers-table.tsx
+#: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/routes/system/package-updates-table.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "No results."
+msgstr "ไม่มีผลลัพธ์"
+
+#: src/components/routes/system/smart-table.tsx
+msgid "No S.M.A.R.T. attributes available for this device."
+msgstr "ไม่มีแอตทริบิวต์ S.M.A.R.T. สำหรับอุปกรณ์นี้"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "No systems found."
+msgstr "ไม่พบระบบ"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "No targets found."
+msgstr "ไม่พบเป้าหมาย"
+
+#: src/components/routes/system/storage-pools-table.tsx
+msgid "None"
+msgstr "ไม่มี"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/notifications.tsx
+msgid "Notifications"
+msgstr "การแจ้งเตือน"
+
+#: src/lib/alerts.ts
+msgid "Notifications may include recent container log excerpts."
+msgstr "การแจ้งเตือนอาจรวมถึงส่วนตัดตอนของบันทึกคอนเทนเนอร์ล่าสุด"
+
+#: src/components/login/auth-form.tsx
+msgid "OAuth 2 / OIDC support"
+msgstr "รองรับ OAuth 2 / OIDC"
+
+#: src/components/routes/settings/config-yaml.tsx
+msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
+msgstr "ทุกครั้งที่รีสตาร์ท ระบบในฐานข้อมูลจะถูกอัปเดตให้ตรงกับระบบที่กำหนดไว้ในไฟล์"
+
+#. placeholder {0}: alert.value
+#: src/components/active-alerts.tsx
+msgid "One or more certificates expire within {0, plural, one {# day} other {# days}}"
+msgstr "มีใบรับรองอย่างน้อยหนึ่งใบจะหมดอายุภายใน {0, plural, other {# วัน}}"
+
+#: src/lib/alerts.ts
+msgid "One or more containers are unhealthy"
+msgstr "มีคอนเทนเนอร์อย่างน้อยหนึ่งรายการที่สถานะไม่ปกติ (unhealthy)"
+
+#. placeholder {0}: alert.value
+#: src/components/active-alerts.tsx
+msgid "One or more monitors exceed {0}% loss"
+msgstr "มีการติดตามอย่างน้อยหนึ่งรายการที่มีการสูญเสียแพ็กเก็ตเกิน {0}%"
+
+#: src/lib/alerts.ts
+msgid "One or more services are in a failed state"
+msgstr "มีบริการอย่างน้อยหนึ่งรายการที่อยู่ในสถานะล้มเหลว"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "One-time"
+msgstr "ครั้งเดียว"
+
+#: src/components/login/auth-form.tsx
+msgid "One-time password"
+msgstr "รหัสผ่านใช้ครั้งเดียว (OTP)"
+
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/system-actions-button.tsx
+msgid "Open menu"
+msgstr "เปิดเมนู"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Optional. Defaults to the agent's system resolver."
+msgstr "ไม่บังคับ หากไม่ระบุจะใช้ resolver ของระบบเอเจนต์"
+
+#: src/components/login/auth-form.tsx
+msgid "Or continue with"
+msgstr "หรือดำเนินการต่อด้วย"
+
+#. Package version
+#: src/components/routes/system/cpu-sheet.tsx
+#: src/components/routes/system/package-updates-table.tsx
+msgid "Other"
+msgstr "อื่นๆ"
+
+#: src/components/alerts/alerts-sheet.tsx
+msgid "Overwrite existing alerts"
+msgstr "เขียนทับการแจ้งเตือนที่มีอยู่"
+
+#. Software package
+#: src/components/routes/system/package-updates-table.tsx
+msgid "Package"
+msgstr "แพ็กเกจ"
+
+#: src/components/routes/system/package-updates-table.tsx
+msgid "Package Updates"
+msgstr "การอัปเดตแพ็กเกจ"
+
+#: src/components/routes/system/charts/monitors-charts.tsx
+msgid "Packet loss (%)"
+msgstr "การสูญเสียแพ็กเก็ต (%)"
+
+#: src/components/command-palette.tsx
+#: src/components/command-palette.tsx
+#: src/components/command-palette.tsx
+#: src/components/command-palette.tsx
+msgid "Page"
+msgstr "หน้า"
+
+#. placeholder {0}: pageIndex + 1
+#. placeholder {1}: Math.max(1, pageCount)
+#: src/components/ui/data-table-pagination.tsx
+msgid "Page {0} of {1}"
+msgstr "หน้า {0} จาก {1}"
+
+#: src/components/command-palette.tsx
+msgid "Pages / Settings"
+msgstr "หน้า / การตั้งค่า"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/auth-form.tsx
+msgid "Password"
+msgstr "รหัสผ่าน"
+
+#: src/components/login/auth-form.tsx
+msgid "Password must be at least 8 characters."
+msgstr "รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร"
+
+#: src/components/login/auth-form.tsx
+msgid "Password must be at most 71 characters."
+msgstr "รหัสผ่านต้องไม่เกิน 71 ตัวอักษร"
+
+#: src/components/login/auth-form.tsx
+msgid "Password must be less than 72 bytes."
+msgstr "รหัสผ่านต้องน้อยกว่า 72 ไบต์"
+
+#: src/components/login/forgot-pass-form.tsx
+msgid "Password reset request received"
+msgstr "ได้รับคำขอรีเซ็ตรหัสผ่านแล้ว"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Past"
+msgstr "ที่ผ่านมา"
+
+#. Package version
+#: src/components/routes/system/package-updates-table.tsx
+msgid "Patch"
+msgstr "แพตช์"
+
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/system-actions-button.tsx
+msgid "Pause"
+msgstr "หยุดชั่วคราว"
+
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "Paused"
+msgstr "หยุดชั่วคราวแล้ว"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Paused ({pausedSystemsLength})"
+msgstr "หยุดชั่วคราว ({pausedSystemsLength})"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Payload format"
+msgstr "รูปแบบ Payload"
+
+#: src/components/routes/system/cpu-sheet.tsx
+#: src/components/routes/system/cpu-sheet.tsx
+msgid "Per-core average utilization"
+msgstr "การใช้งานเฉลี่ยต่อคอร์"
+
+#: src/components/routes/system/charts/disk-charts.tsx
+msgid "Percent of time the disk is busy with I/O"
+msgstr "ร้อยละของเวลาที่ดิสก์กำลังประมวลผล I/O"
+
+#: src/components/routes/system/cpu-sheet.tsx
+msgid "Percentage of time spent in each state"
+msgstr "ร้อยละของเวลาที่ใช้ในแต่ละสถานะ"
+
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Permanent"
+msgstr "ถาวร"
+
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Persistence"
+msgstr "ความคงอยู่ของข้อมูล"
+
+#: src/components/routes/system/raw-capacity-label.tsx
+msgid "Physical device space. True usable capacity is unknown. Pool disk usage alerts are disabled."
+msgstr "พื้นที่อุปกรณ์จริง ความจุที่ใช้งานได้จริงไม่สามารถระบุได้ การแจ้งเตือนการใช้งานดิสก์ pool ถูกปิดไว้"
+
+#: src/components/routes/settings/notifications.tsx
+msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
+msgstr "โปรด <0>กำหนดค่าเซิร์ฟเวอร์ SMTP</0> เพื่อให้แน่ใจว่าระบบสามารถส่งการแจ้งเตือนได้"
+
+#: src/components/alerts/alerts-sheet.tsx
+msgid "Please check logs for more details."
+msgstr "โปรดตรวจสอบบันทึก (logs) เพื่อดูรายละเอียดเพิ่มเติม"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/forgot-pass-form.tsx
+msgid "Please check your credentials and try again"
+msgstr "โปรดตรวจสอบข้อมูลประจำตัวของคุณแล้วลองอีกครั้ง"
+
+#: src/components/login/login.tsx
+msgid "Please create an admin account"
+msgstr "โปรดสร้างบัญชีผู้ดูแลระบบ"
+
+#: src/components/login/auth-form.tsx
+msgid "Please enable pop-ups for this site"
+msgstr "โปรดเปิดใช้งานป๊อปอัปสำหรับเว็บไซต์นี้"
+
+#: src/lib/api.ts
+msgid "Please log in again"
+msgstr "โปรดเข้าสู่ระบบใหม่อีกครั้ง"
+
+#: src/components/login/auth-form.tsx
+msgid "Please see <0>the documentation</0> for instructions."
+msgstr "โปรดดู <0>เอกสารคู่มือ</0> สำหรับคำแนะนำ"
+
+#: src/components/login/login.tsx
+msgid "Please sign in to your account"
+msgstr "โปรดลงชื่อเข้าใช้บัญชีของคุณ"
+
+#: src/components/login/auth-form.tsx
+msgid "Please wait a moment and try again."
+msgstr "โปรดรอสักครู่แล้วลองใหม่อีกครั้ง"
+
+#: src/components/routes/system/storage-pools-table.tsx
+msgid "Pool Health"
+msgstr "สุขภาพของ Pool"
+
+#: src/components/routes/system/charts/storage-pool-charts.tsx
+msgid "Pool Usage"
+msgstr "การใช้งาน Pool"
+
+#: src/components/add-system.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Port"
+msgstr "พอร์ต"
+
+#: src/components/containers-table/containers-table-columns.tsx
+msgctxt "Container ports"
+msgid "Ports"
+msgstr "พอร์ต"
+
+#. Power On Time
+#: src/components/routes/system/smart-table.tsx
+msgid "Power On"
+msgstr "เปิดเครื่อง"
+
+#: src/components/routes/system/charts/gpu-charts.tsx
+#: src/components/routes/system/charts/memory-charts.tsx
+msgid "Precise utilization at the recorded time"
+msgstr "การใช้งานอย่างละเอียด ณ เวลาที่บันทึก"
+
+#: src/components/routes/settings/general.tsx
+msgid "Preferred Language"
+msgstr "ภาษาที่ต้องการ"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Process started"
+msgstr "กระบวนการเริ่มทำงานแล้ว"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+msgid "Protocol"
+msgstr "โปรโตคอล"
+
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Public key"
+msgstr "คีย์สาธารณะ"
+
+#. Use 'Key' if your language requires many more characters
+#: src/components/add-system.tsx
+msgid "Public Key"
+msgstr "คีย์สาธารณะ"
+
+#: src/components/routes/system/disk-io-sheet.tsx
+msgctxt "Disk I/O average queue depth"
+msgid "Queue Depth"
+msgstr "ความลึกของคิว"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Quiet Hours"
+msgstr "ช่วงเวลาเงียบ"
+
+#: src/components/routes/system/raw-capacity-label.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+msgid "Raw"
+msgstr "ค่าดิบ (Raw)"
+
+#: src/components/routes/system/charts/storage-pool-charts.tsx
+msgid "Raw usage of storage pool {displayName}"
+msgstr "การใช้งานดิบของ storage pool {displayName}"
+
+#. Disk read
+#. Disk read
+#: src/components/routes/system/charts/disk-charts.tsx
+#: src/components/routes/system/charts/storage-pool-charts.tsx
+#: src/components/routes/system/disk-io-sheet.tsx
+#: src/components/routes/system/disk-io-sheet.tsx
+#: src/components/routes/system/disk-io-sheet.tsx
+#: src/components/routes/system/disk-io-sheet.tsx
+msgid "Read"
+msgstr "อ่าน"
+
+#: src/components/routes/system/storage-pools-table.tsx
+msgid "Read errors"
+msgstr "ข้อผิดพลาดในการอ่าน"
+
+#: src/components/routes/system/charts/network-charts.tsx
+msgid "Received"
+msgstr "ได้รับแล้ว"
+
+#: src/components/containers-table/containers-table.tsx
+#: src/components/logs-display.tsx
+#: src/components/logs-display.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Refresh"
+msgstr "รีเฟรช"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Relationships"
+msgstr "ความสัมพันธ์"
+
+#: src/components/login/login.tsx
+msgid "Request a one-time password"
+msgstr "ขอรหัสผ่านใช้ครั้งเดียว (OTP)"
+
+#: src/components/login/otp-forms.tsx
+msgid "Request OTP"
+msgstr "ขอ OTP"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Required by"
+msgstr "จำเป็นสำหรับ"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Requires"
+msgstr "ต้องการ"
+
+#: src/components/login/forgot-pass-form.tsx
+msgid "Reset Password"
+msgstr "รีเซ็ตรหัสผ่าน"
+
+#: src/components/alerts-history-columns.tsx
+#: src/components/alerts-history-columns.tsx
+#: src/components/routes/settings/alerts-history-data-table.tsx
+msgid "Resolved"
+msgstr "แก้ไขแล้ว"
+
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/routes/system/charts/monitors-charts.tsx
+msgid "Response"
+msgstr "การตอบสนอง"
+
+#: src/components/network-monitors-table/network-monitors-table.tsx
+msgid "Response time monitoring from agents."
+msgstr "การติดตามเวลาตอบสนองจากเอเจนต์"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Restarts"
+msgstr "การรีสตาร์ท"
+
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/system-actions-button.tsx
+msgid "Resume"
+msgstr "ทำงานต่อ"
+
+#: src/components/token-value.tsx
+#: src/components/token-value.tsx
+msgid "Reveal token"
+msgstr "แสดงโทเคน"
+
+#. Package version
+#: src/components/routes/system/package-updates-table.tsx
+msgid "Revision"
+msgstr "ฉบับแก้ไข"
+
+#: src/components/routes/system/charts/disk-charts.tsx
+#: src/components/routes/system/charts/disk-charts.tsx
+#: src/components/systems-table/systems-table-columns.tsx
+msgctxt "Root disk label"
+msgid "Root"
+msgstr "รูท (Root)"
+
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Rotate token"
+msgstr "สลับเปลี่ยนโทเคน"
+
+#: src/components/ui/data-table-pagination.tsx
+msgid "Rows per page"
+msgstr "จำนวนแถวต่อหน้า"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Runtime Metrics"
+msgstr "ตัววัดขณะทำงาน"
+
+#: src/components/routes/system/smart-table.tsx
+msgid "S.M.A.R.T. Details"
+msgstr "รายละเอียด S.M.A.R.T."
+
+#: src/components/routes/system/smart-table.tsx
+msgid "S.M.A.R.T. Self-Test"
+msgstr "การทดสอบตัวเอง S.M.A.R.T."
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Save {foo}"
+msgstr "บันทึก {foo}"
+
+#: src/components/routes/settings/notifications.tsx
+msgid "Save address using enter key or comma. Leave blank to disable email notifications."
+msgstr "บันทึกที่อยู่โดยกดปุ่ม Enter หรือเครื่องหมายจุลภาค เว้นว่างไว้เพื่อปิดการแจ้งเตือนทางอีเมล"
+
+#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/notifications.tsx
+msgid "Save Settings"
+msgstr "บันทึกการตั้งค่า"
+
+#: src/components/add-system.tsx
+msgid "Save System"
+msgstr "บันทึกระบบ"
+
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Saved in the database and does not expire until you disable it."
+msgstr "บันทึกในฐานข้อมูลและไม่มีวันหมดอายุจนกว่าคุณจะปิดการใช้งาน"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Schedule"
+msgstr "กำหนดการ"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Schedule quiet hours where notifications will not be sent, such as during maintenance periods."
+msgstr "กำหนดช่วงเวลาเงียบที่จะไม่ส่งการแจ้งเตือน เช่น ช่วงเวลาบำรุงรักษาระบบ"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Schedule quiet hours where notifications will not be sent."
+msgstr "กำหนดช่วงเวลาเงียบที่จะไม่ส่งการแจ้งเตือน"
+
+#: src/components/navbar.tsx
+msgid "Search"
+msgstr "ค้นหา"
+
+#: src/components/command-palette.tsx
+msgid "Search for systems or settings..."
+msgstr "ค้นหาระบบหรือการตั้งค่า..."
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Search systems"
+msgstr "ค้นหาระบบ"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Search targets"
+msgstr "ค้นหาเป้าหมาย"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Seconds between pings (default: 60)"
+msgstr "ระยะเวลาระหว่างการ ping เป็นวินาที (ค่าเริ่มต้น: 60)"
+
+#. Security update
+#: src/components/routes/system/package-updates-table.tsx
+#: src/components/routes/system/package-updates-table.tsx
+msgid "Security"
+msgstr "ความปลอดภัย"
+
+#: src/components/routes/system/package-updates-table.tsx
+msgid "Security: {securityCount}"
+msgstr "ความปลอดภัย: {securityCount}"
+
+#: src/components/alerts/alerts-sheet.tsx
+msgid "See <0>notification settings</0> to configure how you receive alerts."
+msgstr "ดูที่ <0>การตั้งค่าการแจ้งเตือน</0> เพื่อกำหนดค่าการรับการแจ้งเตือน"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Select {foo}"
+msgstr "เลือก {foo}"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Select a system"
+msgstr "เลือกระบบ"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+msgid "Select all"
+msgstr "เลือกทั้งหมด"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Select matches"
+msgstr "เลือกรายการที่ตรงกัน"
+
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+msgid "Select row"
+msgstr "เลือกแถว"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Select systems"
+msgstr "เลือกระบบ"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Select targets"
+msgstr "เลือกเป้าหมาย"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Send a single heartbeat ping to verify your endpoint is working."
+msgstr "ส่ง ping heartbeat ครั้งเดียวเพื่อตรวจสอบว่า endpoint ทำงานได้หรือไม่"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Send periodic outbound pings to an external monitoring service so you can monitor Beszel without exposing it to the internet."
+msgstr "ส่ง ping ขาออกเป็นระยะไปยังบริการติดตามผลภายนอกเพื่อตรวจสอบสถานะของระบบโดยไม่ต้องเปิดเผยต่ออินเทอร์เน็ต"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Send test heartbeat"
+msgstr "ส่ง heartbeat ทดสอบ"
+
+#: src/components/routes/system/charts/network-charts.tsx
+msgid "Sent"
+msgstr "ส่งแล้ว"
+
+#: src/components/routes/system/smart-table.tsx
+msgid "Serial Number"
+msgstr "หมายเลขซีเรียล"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Service Details"
+msgstr "รายละเอียดบริการ"
+
+#: src/components/routes/system.tsx
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "Services"
+msgstr "บริการ"
+
+#: src/components/routes/settings/general.tsx
+msgid "Set percentage thresholds for meter colors."
+msgstr "ตั้งค่าเกณฑ์เปอร์เซ็นต์สำหรับสีของมิเตอร์"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Set the following environment variables on your Beszel hub to enable heartbeat monitoring:"
+msgstr "ตั้งค่าตัวแปรสภาพแวดล้อมต่อไปนี้บน DockMon hub เพื่อเปิดใช้งานการติดตาม heartbeat:"
+
+#: src/components/command-palette.tsx
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/layout.tsx
+msgid "Settings"
+msgstr "การตั้งค่า"
+
+#: src/components/routes/settings/layout.tsx
+msgid "Settings saved"
+msgstr "บันทึกการตั้งค่าเรียบร้อยแล้ว"
+
+#: src/components/logs-display.tsx
+#: src/components/logs-display.tsx
+msgid "Show timestamps"
+msgstr "แสดงเวลา (timestamp)"
+
+#: src/components/login/auth-form.tsx
+msgid "Sign in"
+msgstr "ลงชื่อเข้าใช้"
+
+#: src/components/routes/system/charts/wifi-chart.tsx
+msgid "Signal strength of connected Wi-Fi interfaces"
+msgstr "ความแรงของสัญญาณอินเทอร์เฟซ Wi-Fi ที่เชื่อมต่อ"
+
+#: src/components/command-palette.tsx
+msgid "SMTP settings"
+msgstr "การตั้งค่า SMTP"
+
+#: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Sort By"
+msgstr "จัดเรียงตาม"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Start Time"
+msgstr "เวลาเริ่มต้น"
+
+#. Context: alert state (active or resolved)
+#: src/components/alerts-history-columns.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
+msgid "State"
+msgstr "สถานะ"
+
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/lib/alerts.ts
+msgid "Status"
+msgstr "สถานะ"
+
+#: src/components/systemd-table/systemd-table-columns.tsx
+msgid "Sub State"
+msgstr "สถานะย่อย"
+
+#: src/components/routes/system/charts/memory-charts.tsx
+msgid "Swap space used by the system"
+msgstr "พื้นที่ Swap ที่ระบบใช้งาน"
+
+#: src/components/routes/system/charts/memory-charts.tsx
+msgid "Swap Usage"
+msgstr "การใช้งาน Swap"
+
+#: src/components/mode-toggle.tsx
+#: src/components/mode-toggle.tsx
+msgid "Switch theme"
+msgstr "เปลี่ยนธีม"
+
+#: src/components/alerts-history-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/alerts.ts
+msgid "System"
+msgstr "ระบบ"
+
+#: src/components/routes/system/charts/sensor-charts.tsx
+msgid "System fan speeds (RPM)"
+msgstr "ความเร็วพัดลมระบบ (RPM)"
+
+#: src/components/routes/system/charts/load-average-chart.tsx
+msgid "System load averages over time"
+msgstr "โหลดเฉลี่ยของระบบตามช่วงเวลา"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Systemd Services"
+msgstr "บริการ Systemd"
+
+#: src/components/navbar.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Systems"
+msgstr "ระบบทั้งหมด"
+
+#: src/components/routes/settings/config-yaml.tsx
+msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
+msgstr "ระบบสามารถจัดการได้ในไฟล์ <0>config.yml</0> ในโฟลเดอร์ข้อมูลของคุณ"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Table"
+msgstr "ตาราง"
+
+#: src/components/routes/system/info-bar.tsx
+msgctxt "Tabs system layout option"
+msgid "Tabs"
+msgstr "แท็บ"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+msgid "Target"
+msgstr "เป้าหมาย"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "target[,protocol[,port[,interval[,server]]]]"
+msgstr "เป้าหมาย[,โปรโตคอล[,พอร์ต[,ช่วงเวลา[,เซิร์ฟเวอร์]]]]"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Tasks"
+msgstr "งาน (Tasks)"
+
+#. Temperature label in systems table
+#: src/components/routes/system/smart-table.tsx
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "Temp"
+msgstr "อุณหภูมิ"
+
+#: src/components/routes/system/charts/sensor-charts.tsx
+#: src/lib/alerts.ts
+msgid "Temperature"
+msgstr "อุณหภูมิ"
+
+#: src/components/routes/settings/general.tsx
+msgid "Temperature unit"
+msgstr "หน่วยอุณหภูมิ"
+
+#: src/components/routes/system/charts/sensor-charts.tsx
+msgid "Temperatures of system sensors"
+msgstr "อุณหภูมิของเซ็นเซอร์ระบบ"
+
+#: src/components/routes/settings/notifications.tsx
+msgid "Test <0>URL</0>"
+msgstr "ทดสอบ <0>URL</0>"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "Test heartbeat"
+msgstr "ทดสอบ heartbeat"
+
+#: src/components/routes/settings/notifications.tsx
+msgid "Test notification sent"
+msgstr "ส่งการแจ้งเตือนทดสอบแล้ว"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
+msgstr "สถานะโดยรวมจะเป็น <0>ok</0> เมื่อทุกระบบออนไลน์, <1>warn</1> เมื่อมีการแจ้งเตือนถูกกระตุ้น, และ <2>error</2> เมื่อมีระบบใดออฟไลน์"
+
+#: src/components/login/forgot-pass-form.tsx
+msgid "Then log into the backend and reset your user account password in the users table."
+msgstr "จากนั้นเข้าสู่ระบบ backend และรีเซ็ตรหัสผ่านบัญชีผู้ใช้ของคุณในตาราง users"
+
+#: src/components/system-actions-button.tsx
+msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
+msgstr "การดำเนินการนี้ไม่สามารถยกเลิกได้ ข้อมูลปัจจุบันทั้งหมดของ {name} จะถูกลบออกจากฐานข้อมูลอย่างถาวร"
+
+#: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/routes/settings/alerts-history-data-table.tsx
+msgid "This will permanently delete all selected records from the database."
+msgstr "การดำเนินการนี้จะลบระเบียนที่เลือกทั้งหมดออกจากฐานข้อมูลอย่างถาวร"
+
+#: src/components/routes/system/charts/disk-charts.tsx
+msgid "Throughput of {extraFsName}"
+msgstr "Throughput ของ {extraFsName}"
+
+#: src/components/routes/system/charts/storage-pool-charts.tsx
+msgid "Throughput of storage pool {displayName}"
+msgstr "Throughput ของ storage pool {displayName}"
+
+#: src/components/routes/settings/general.tsx
+msgid "Time format"
+msgstr "รูปแบบเวลา"
+
+#: src/components/routes/settings/notifications.tsx
+msgid "To email(s)"
+msgstr "ไปยังอีเมล"
+
+#: src/components/add-system.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Token"
+msgstr "โทเคน"
+
+#. placeholder {0}: fingerprint.expand.system.name
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Token for {0}"
+msgstr "โทเคนสำหรับ {0}"
+
+#: src/components/token-value.tsx
+msgid "Token hidden"
+msgstr "ซ่อนโทเคนแล้ว"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Tokens & Fingerprints"
+msgstr "โทเคน & ฟิงเกอร์พริ้นต์"
+
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Tokens allow agents to connect and register. Fingerprints are stable identifiers unique to each system, set on first connection."
+msgstr "โทเคนช่วยให้เอเจนต์เชื่อมต่อและลงทะเบียนได้ ฟิงเกอร์พริ้นต์คือตัวระบุเฉพาะของแต่ละระบบที่กำหนดในการเชื่อมต่อครั้งแรก"
+
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Tokens and fingerprints are used to authenticate WebSocket connections to the hub."
+msgstr "โทเคนและฟิงเกอร์พริ้นต์ใช้เพื่อยืนยันตัวตนการเชื่อมต่อ WebSocket ไปยัง hub"
+
+#: src/components/login/auth-form.tsx
+msgid "Too many login attempts"
+msgstr "พยายามเข้าสู่ระบบมากเกินไป"
+
+#: src/components/ui/chart.tsx
+#: src/components/ui/chart.tsx
+msgid "Total"
+msgstr "ทั้งหมด"
+
+#: src/components/routes/system/network-sheet.tsx
+msgid "Total data received for each interface"
+msgstr "ข้อมูลทั้งหมดที่ได้รับในแต่ละอินเทอร์เฟซ"
+
+#: src/components/routes/system/network-sheet.tsx
+msgid "Total data sent for each interface"
+msgstr "ข้อมูลทั้งหมดที่ส่งในแต่ละอินเทอร์เฟซ"
+
+#: src/components/routes/system/disk-io-sheet.tsx
+msgctxt "Disk I/O"
+msgid "Total time spent on read/write (can exceed 100%)"
+msgstr "เวลารวมที่ใช้ในการอ่าน/เขียน (อาจเกิน 100%)"
+
+#. placeholder {0}: data.length
+#. placeholder {0}: rows.length
+#: src/components/routes/system/package-updates-table.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Total: {0}"
+msgstr "ทั้งหมด: {0}"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Triggered by"
+msgstr "กระตุ้นโดย"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Triggers"
+msgstr "เงื่อนไขการแจ้งเตือน"
+
+#: src/lib/alerts.ts
+msgid "Triggers when 1 minute load average exceeds a threshold"
+msgstr "กระตุ้นเมื่อโหลดเฉลี่ย 1 นาทีเกินเกณฑ์"
+
+#: src/lib/alerts.ts
+msgid "Triggers when 15 minute load average exceeds a threshold"
+msgstr "กระตุ้นเมื่อโหลดเฉลี่ย 15 นาทีเกินเกณฑ์"
+
+#: src/lib/alerts.ts
+msgid "Triggers when 5 minute load average exceeds a threshold"
+msgstr "กระตุ้นเมื่อโหลดเฉลี่ย 5 นาทีเกินเกณฑ์"
+
+#: src/lib/alerts.ts
+msgid "Triggers when a container's health check reports unhealthy"
+msgstr "กระตุ้นเมื่อการตรวจสุขภาพคอนเทนเนอร์รายงานว่าไม่ปกติ"
+
+#: src/lib/alerts.ts
+msgid "Triggers when an HTTPS certificate nears expiration"
+msgstr "กระตุ้นเมื่อใบรับรอง HTTPS ใกล้หมดอายุ"
+
+#: src/lib/alerts.ts
+msgid "Triggers when any sensor exceeds a threshold"
+msgstr "กระตุ้นเมื่อเซ็นเซอร์ใดๆ เกินเกณฑ์ที่กำหนด"
+
+#: src/lib/alerts.ts
+msgid "Triggers when any systemd service enters the failed state"
+msgstr "กระตุ้นเมื่อบริการ systemd ใดๆ เข้าสู่สถานะล้มเหลว"
+
+#: src/lib/alerts.ts
+msgid "Triggers when battery charge drops below a threshold"
+msgstr "กระตุ้นเมื่อประจุแบตเตอรี่ลดลงต่ำกว่าเกณฑ์"
+
+#: src/lib/alerts.ts
+msgid "Triggers when combined up/down exceeds a threshold"
+msgstr "กระตุ้นเมื่อปริมาณอัป/ดาวน์รวมเกินเกณฑ์"
+
+#: src/lib/alerts.ts
+msgid "Triggers when CPU I/O wait exceeds a threshold"
+msgstr "กระตุ้นเมื่อการรอคอย CPU I/O เกินเกณฑ์"
+
+#: src/lib/alerts.ts
+msgid "Triggers when CPU steal time exceeds a threshold"
+msgstr "กระตุ้นเมื่อเวลา CPU steal เกินเกณฑ์"
+
+#: src/lib/alerts.ts
+msgid "Triggers when CPU usage exceeds a threshold"
+msgstr "กระตุ้นเมื่อการใช้งาน CPU เกินเกณฑ์"
+
+#: src/lib/alerts.ts
+msgid "Triggers when GPU usage exceeds a threshold"
+msgstr "กระตุ้นเมื่อการใช้งาน GPU เกินเกณฑ์"
+
+#: src/lib/alerts.ts
+msgid "Triggers when memory usage exceeds a threshold"
+msgstr "กระตุ้นเมื่อการใช้งานหน่วยความจำเกินเกณฑ์"
+
+#: src/lib/alerts.ts
+msgid "Triggers when one hour loss exceeds a threshold"
+msgstr "กระตุ้นเมื่อการสูญเสียแพ็กเก็ตใน 1 ชั่วโมงเกินเกณฑ์"
+
+#: src/lib/alerts.ts
+msgid "Triggers when status switches between up and down"
+msgstr "กระตุ้นเมื่อสถานะสลับระหว่างออนไลน์และออฟไลน์"
+
+#: src/lib/alerts.ts
+msgid "Triggers when usage of any disk exceeds a threshold"
+msgstr "กระตุ้นเมื่อการใช้งานดิสก์ใดๆ เกินเกณฑ์"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+msgid "Type"
+msgstr "ประเภท"
+
+#: src/lib/alerts.ts
+msgid "Unhealthy"
+msgstr "ไม่ปกติ (Unhealthy)"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Unit file"
+msgstr "ไฟล์ Unit"
+
+#. Temperature / network units
+#: src/components/routes/settings/general.tsx
+msgid "Unit preferences"
+msgstr "การตั้งค่าหน่วยวัด"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "Universal token"
+msgstr "โทเคนสากล (Universal token)"
+
+#. Context: Battery state
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/i18n.ts
+msgid "Unknown"
+msgstr "ไม่ทราบ"
+
+#: src/components/systemd-table/systemd-table.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Unlimited"
+msgstr "ไม่จำกัด"
+
+#. Context: System is up
+#: src/components/routes/system/info-bar.tsx
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "Up"
+msgstr "ออนไลน์"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Up ({upSystemsLength})"
+msgstr "ออนไลน์ ({upSystemsLength})"
+
+#: src/components/routes/system/package-updates-table.tsx
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "Up to date"
+msgstr "เป็นปัจจุบันแล้ว"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Update"
+msgstr "อัปเดต"
+
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
+msgid "Updated"
+msgstr "อัปเดตแล้ว"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Updated every 10 minutes."
+msgstr "อัปเดตทุก 10 นาที"
+
+#: src/components/routes/system.tsx
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "Updates"
+msgstr "รายการอัปเดต"
+
+#: src/components/routes/system/network-sheet.tsx
+msgid "Upload"
+msgstr "อัปโหลด"
+
+#: src/components/routes/system/info-bar.tsx
+#: src/components/systems-table/systems-table-columns.tsx
+msgid "Uptime"
+msgstr "เวลาทำงานต่อเนื่อง"
+
+#: src/components/routes/system/charts/disk-charts.tsx
+#: src/components/routes/system/charts/disk-charts.tsx
+#: src/components/routes/system/charts/gpu-charts.tsx
+#: src/components/routes/system/charts/gpu-charts.tsx
+#: src/components/routes/system/charts/gpu-charts.tsx
+#: src/components/routes/system/charts/storage-pool-charts.tsx
+#: src/components/routes/system/cpu-sheet.tsx
+msgid "Usage"
+msgstr "การใช้งาน"
+
+#: src/components/routes/system/charts/storage-pool-charts.tsx
+msgid "Usage of storage pool {displayName}"
+msgstr "การใช้งาน storage pool {displayName}"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Use for self-signed certificates."
+msgstr "ใช้สำหรับใบรับรองแบบลงนามเอง (self-signed)"
+
+#: src/components/routes/system/charts/memory-charts.tsx
+#: src/components/routes/system/charts/memory-charts.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+msgid "Used"
+msgstr "ใช้ไปแล้ว"
+
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+msgid "Users"
+msgstr "ผู้ใช้งาน"
+
+#: src/components/routes/system/charts/disk-charts.tsx
+msgctxt "Disk I/O utilization"
+msgid "Utilization"
+msgstr "การใช้งาน"
+
+#: src/components/alerts-history-columns.tsx
+msgid "Value"
+msgstr "ค่า"
+
+#: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/routes/system/info-bar.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "View"
+msgstr "ดู"
+
+#: src/components/active-alerts.tsx
+msgid "View alerts"
+msgstr "ดูการแจ้งเตือน"
+
+#: src/components/alert-banner-sheet.tsx
+msgid "View details"
+msgstr "ดูรายละเอียด"
+
+#: src/components/routes/system/cpu-sheet.tsx
+#: src/components/routes/system/disk-io-sheet.tsx
+#: src/components/routes/system/network-sheet.tsx
+msgid "View more"
+msgstr "ดูเพิ่มเติม"
+
+#: src/components/routes/settings/alerts-history-data-table.tsx
+msgid "View your 200 most recent alerts."
+msgstr "ดูการแจ้งเตือนล่าสุด 200 รายการของคุณ"
+
+#: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Visible Fields"
+msgstr "ฟิลด์ที่แสดง"
+
+#: src/components/charts/chart-no-values.tsx
+#: src/components/routes/system/chart-card.tsx
+msgid "Waiting for enough records to display"
+msgstr "กำลังรอข้อมูลบันทึกเพียงพอที่จะแสดงผล"
+
+#: src/components/routes/settings/general.tsx
+msgid "Want to help improve our translations? Check <0>Crowdin</0> for details."
+msgstr "ต้องการช่วยปรับปรุงการแปลของเราหรือไม่? ดูรายละเอียดได้ที่ <0>Crowdin</0>"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Wants"
+msgstr "ความต้องการ"
+
+#: src/components/routes/settings/general.tsx
+msgid "Warning (%)"
+msgstr "เตือน (%)"
+
+#: src/components/routes/settings/general.tsx
+msgid "Warning thresholds"
+msgstr "เกณฑ์การแจ้งเตือน"
+
+#: src/components/routes/settings/notifications.tsx
+msgid "Webhook / Push notifications"
+msgstr "Webhook / การแจ้งเตือนแบบพุช"
+
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgid "When enabled, this token allows agents to self-register without prior system creation."
+msgstr "เมื่อเปิดใช้งาน โทเคนนี้จะอนุญาตให้เอเจนต์ลงทะเบียนตัวเองได้โดยไม่ต้องสร้างระบบล่วงหน้า"
+
+#: src/components/routes/settings/heartbeat.tsx
+msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."
+msgstr "เมื่อใช้ POST แต่ละ heartbeat จะรวม JSON payload ที่มีสรุปสถานะระบบ รายชื่อระบบที่ออฟไลน์ และการแจ้งเตือนที่ถูกกระตุ้น"
+
+#: src/components/routes/system/charts/wifi-chart.tsx
+msgid "Wi-Fi signal"
+msgstr "สัญญาณ Wi-Fi"
+
+#: src/components/add-system.tsx
+#: src/components/routes/settings/tokens-fingerprints.tsx
+msgctxt "Button to copy install command"
+msgid "Windows command"
+msgstr "คำสั่งสำหรับ Windows"
+
+#. Disk write
+#. Disk write
+#: src/components/routes/system/charts/disk-charts.tsx
+#: src/components/routes/system/charts/storage-pool-charts.tsx
+#: src/components/routes/system/disk-io-sheet.tsx
+#: src/components/routes/system/disk-io-sheet.tsx
+#: src/components/routes/system/disk-io-sheet.tsx
+#: src/components/routes/system/disk-io-sheet.tsx
+msgid "Write"
+msgstr "เขียน"
+
+#: src/components/routes/system/storage-pools-table.tsx
+msgid "Write errors"
+msgstr "ข้อผิดพลาดในการเขียน"
+
+#: src/components/routes/settings/layout.tsx
+msgid "YAML Config"
+msgstr "การกำหนดค่า YAML"
+
+#: src/components/routes/settings/config-yaml.tsx
+msgid "YAML Configuration"
+msgstr "การกำหนดค่า YAML"
+
+#: src/components/systemd-table/systemd-table.tsx
+#: src/components/systemd-table/systemd-table.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Yes"
+msgstr "ใช่"
+
+#: src/components/routes/settings/layout.tsx
+msgid "Your user settings have been updated."
+msgstr "การตั้งค่าผู้ใช้ของคุณได้รับการอัปเดตแล้ว"

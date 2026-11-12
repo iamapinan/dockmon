@@ -30,6 +30,7 @@ export default defineConfig({
 		"sl",
 		"sr",
 		"sv",
+		"th",
 		"uk",
 		"uz",
 		"vi",
