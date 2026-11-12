@@ -1,0 +1,13 @@
+services:
+  dockmon:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dockmon
+    restart: unless-stopped
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./dockmon_data:/dockmon_data
+    environment:
+      - APP_URL=http://localhost:8090

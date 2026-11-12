@@ -37,11 +37,13 @@ type Hub struct {
 	pubKey string
 	signer ssh.Signer
 	appURL string
+	dm     *DockMonManager
 }
 
 // NewHub creates a new Hub instance with default configuration
 func NewHub(app core.App) *Hub {
 	hub := &Hub{App: app}
+	hub.dm = newDockMonManager(hub)
 	hub.AlertManager = alerts.NewAlertManager(hub)
 	hub.um = users.NewUserManager(hub)
 	hub.rm = records.NewRecordManager(hub)
@@ -97,6 +99,10 @@ func (h *Hub) StartHub() error {
 		// start system updates
 		if err := h.sm.Initialize(); err != nil {
 			return err
+		}
+		// start DockMon background workers
+		if h.dm != nil {
+			h.dm.StartBackgroundWorkers()
 		}
 		// start heartbeat if configured
 		if h.hb != nil {

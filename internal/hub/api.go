@@ -225,6 +225,12 @@ func (h *Hub) registerApiRoutes(se *core.ServeEvent) error {
 		// get container info
 		apiAuth.GET("/containers/info", h.getContainerInfo)
 	}
+
+	// register DockMon routes
+	if h.dm != nil {
+		h.registerDockMonRoutes(se, h.dm)
+	}
+
 	return nil
 }
 

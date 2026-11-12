@@ -5,6 +5,8 @@ temp
 .vscode
 beszel_data
 beszel_data*
+dockmon_data
+dockmon_data*
 dist
 *.exe
 internal/cmd/hub/hub

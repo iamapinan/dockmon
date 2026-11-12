@@ -8,7 +8,7 @@ const (
 	// Version is the current version of the application.
 	Version = "0.21.1"
 	// AppName is the name of the application.
-	AppName = "beszel"
+	AppName = "dockmon"
 )
 
 // MinVersionCbor is the minimum supported version for CBOR compatibility.

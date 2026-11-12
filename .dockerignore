@@ -4,6 +4,7 @@ node_modules/
 
 # Go build artifacts and binaries
 build
+!build/dockmon
 dist
 *.exe
 beszel-agent

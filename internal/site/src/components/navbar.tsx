@@ -3,6 +3,7 @@ import { getPagePath } from "@nanostores/router"
 import {
 	ContainerIcon,
 	DatabaseBackupIcon,
+	GlobeIcon,
 	HardDriveIcon,
 	LogOutIcon,
 	LogsIcon,
@@ -12,6 +13,7 @@ import {
 	SearchIcon,
 	ServerIcon,
 	SettingsIcon,
+	ShieldAlertIcon,
 	UserIcon,
 	UsersIcon,
 } from "lucide-react"
@@ -102,6 +104,20 @@ export default function Navbar() {
 								<ContainerIcon className="h-4 w-4 me-2.5" strokeWidth={1.5} />
 								<Trans>All Containers</Trans>
 							</DropdownMenuItem>
+							<DropdownMenuItem
+								onClick={() => navigate(getPagePath($router, "domains"))}
+								className="flex items-center"
+							>
+								<GlobeIcon className="h-4 w-4 me-2.5" strokeWidth={1.5} />
+								<span>Domains &amp; SSL</span>
+							</DropdownMenuItem>
+							<DropdownMenuItem
+								onClick={() => navigate(getPagePath($router, "policies"))}
+								className="flex items-center"
+							>
+								<ShieldAlertIcon className="h-4 w-4 me-2.5" strokeWidth={1.5} />
+								<span>Alert Policies</span>
+							</DropdownMenuItem>
 							<DropdownMenuItem onClick={() => navigate(getPagePath($router, "smart"))} className="flex items-center">
 								<HardDriveIcon className="h-4 w-4 me-2.5" strokeWidth={1.5} />
 								<span>S.M.A.R.T.</span>
@@ -171,6 +187,30 @@ export default function Navbar() {
 					<TooltipContent>
 						<Trans>All Containers</Trans>
 					</TooltipContent>
+				</Tooltip>
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<Link
+							href={getPagePath($router, "domains")}
+							className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
+							aria-label="Domains"
+						>
+							<GlobeIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
+						</Link>
+					</TooltipTrigger>
+					<TooltipContent>Domains &amp; SSL</TooltipContent>
+				</Tooltip>
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<Link
+							href={getPagePath($router, "policies")}
+							className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
+							aria-label="Alert Policies"
+						>
+							<ShieldAlertIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
+						</Link>
+					</TooltipTrigger>
+					<TooltipContent>Alert Policies</TooltipContent>
 				</Tooltip>
 				<Tooltip>
 					<TooltipTrigger asChild>
