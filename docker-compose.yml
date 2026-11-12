@@ -9,5 +9,6 @@ services:
       - "8090:8090"
     volumes:
       - ./dockmon_data:/dockmon_data
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - APP_URL=http://localhost:8090

@@ -2,9 +2,12 @@ package hub
 
 import (
 	"bytes"
+	"context"
 	"crypto/tls"
+	"encoding/binary"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net"
 	"net/http"
 	"os"
@@ -447,6 +450,87 @@ func sendAlertNotification(ch AlertPolicyChannels, title, message string) {
 	}
 }
 
+// ---------------- DOCKER ENGINE HELPERS ----------------
+
+func getDockerClient() (*http.Client, string, error) {
+	dockerHost := os.Getenv("DOCKER_HOST")
+	if dockerHost == "" {
+		dockerHost = "/var/run/docker.sock"
+	}
+
+	if strings.HasPrefix(dockerHost, "tcp://") || strings.HasPrefix(dockerHost, "http://") {
+		baseURL := dockerHost
+		if strings.HasPrefix(baseURL, "tcp://") {
+			baseURL = "http://" + strings.TrimPrefix(baseURL, "tcp://")
+		}
+		return &http.Client{Timeout: 30 * time.Second}, baseURL, nil
+	}
+
+	socketPath := strings.TrimPrefix(dockerHost, "unix://")
+	if _, err := os.Stat(socketPath); err != nil {
+		return nil, "", fmt.Errorf("Docker socket not accessible at %s: %w", socketPath, err)
+	}
+
+	tr := &http.Transport{
+		DialContext: func(ctx context.Context, _, _ string) (net.Conn, error) {
+			return (&net.Dialer{}).DialContext(ctx, "unix", socketPath)
+		},
+	}
+	return &http.Client{Transport: tr, Timeout: 30 * time.Second}, "http://localhost/v1.45", nil
+}
+
+func dockerDoRequest(method, endpoint string, reqBody io.Reader) (*http.Response, error) {
+	client, baseURL, err := getDockerClient()
+	if err != nil {
+		return nil, err
+	}
+	reqURL := baseURL + endpoint
+	req, err := http.NewRequest(method, reqURL, reqBody)
+	if err != nil {
+		return nil, err
+	}
+	if reqBody != nil {
+		req.Header.Set("Content-Type", "application/json")
+	}
+	return client.Do(req)
+}
+
+func readDockerLogs(r io.Reader) string {
+	raw, err := io.ReadAll(r)
+	if err != nil || len(raw) == 0 {
+		return ""
+	}
+
+	var sb strings.Builder
+	pos := 0
+	multiplexed := true
+
+	for pos < len(raw) {
+		if pos+8 > len(raw) {
+			multiplexed = false
+			break
+		}
+		streamType := raw[pos]
+		if (streamType != 1 && streamType != 2 && streamType != 0) || raw[pos+1] != 0 || raw[pos+2] != 0 || raw[pos+3] != 0 {
+			multiplexed = false
+			break
+		}
+		frameSize := int(binary.BigEndian.Uint32(raw[pos+4 : pos+8]))
+		if pos+8+frameSize > len(raw) {
+			multiplexed = false
+			break
+		}
+		sb.Write(raw[pos+8 : pos+8+frameSize])
+		pos += 8 + frameSize
+	}
+
+	if multiplexed && sb.Len() > 0 {
+		return sb.String()
+	}
+
+	return string(raw)
+}
+
 // registerDockMonRoutes registers all custom DockMon REST endpoints
 func (h *Hub) registerDockMonRoutes(se *core.ServeEvent, dm *DockMonManager) {
 	api := se.Router.Group("/api/dockmon")
@@ -770,5 +854,464 @@ func (h *Hub) registerDockMonRoutes(se *core.ServeEvent, dm *DockMonManager) {
 		}
 		sendAlertNotification(channels, "DockMon Test Alert", "This is a test notification from DockMon Alert Policy.")
 		return e.JSON(http.StatusOK, map[string]bool{"sent": true})
+	})
+
+	// ---------------- CLOUDFLARE DNS MANAGEMENT & MONITORING ----------------
+
+	// GET /api/dockmon/cloudflare/zones/:zone_id/dns
+	api.GET("/cloudflare/zones/{zone_id}/dns", func(e *core.RequestEvent) error {
+		zoneID := e.Request.PathValue("zone_id")
+		dm.mu.RLock()
+		token := dm.cfSettings.APIToken
+		dm.mu.RUnlock()
+
+		if token == "" {
+			return e.BadRequestError("Cloudflare API Token not configured", nil)
+		}
+
+		client := &http.Client{Timeout: 10 * time.Second}
+		cfReq, _ := http.NewRequest("GET", fmt.Sprintf("https://api.cloudflare.com/client/v4/zones/%s/dns_records?per_page=100", zoneID), nil)
+		cfReq.Header.Set("Authorization", "Bearer "+token)
+
+		resp, err := client.Do(cfReq)
+		if err != nil {
+			return e.BadRequestError("Failed to reach Cloudflare API: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		var result map[string]interface{}
+		if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+			return e.BadRequestError("Failed to parse Cloudflare response", err)
+		}
+
+		return e.JSON(http.StatusOK, result)
+	})
+
+	// POST /api/dockmon/cloudflare/zones/:zone_id/dns
+	api.POST("/cloudflare/zones/{zone_id}/dns", func(e *core.RequestEvent) error {
+		zoneID := e.Request.PathValue("zone_id")
+		dm.mu.RLock()
+		token := dm.cfSettings.APIToken
+		dm.mu.RUnlock()
+
+		if token == "" {
+			return e.BadRequestError("Cloudflare API Token not configured", nil)
+		}
+
+		bodyBytes, err := io.ReadAll(e.Request.Body)
+		if err != nil {
+			return e.BadRequestError("Failed to read body", err)
+		}
+
+		client := &http.Client{Timeout: 10 * time.Second}
+		cfReq, _ := http.NewRequest("POST", fmt.Sprintf("https://api.cloudflare.com/client/v4/zones/%s/dns_records", zoneID), bytes.NewReader(bodyBytes))
+		cfReq.Header.Set("Authorization", "Bearer "+token)
+		cfReq.Header.Set("Content-Type", "application/json")
+
+		resp, err := client.Do(cfReq)
+		if err != nil {
+			return e.BadRequestError("Failed to reach Cloudflare API: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		var result map[string]interface{}
+		_ = json.NewDecoder(resp.Body).Decode(&result)
+		return e.JSON(resp.StatusCode, result)
+	})
+
+	// PUT /api/dockmon/cloudflare/zones/:zone_id/dns/:record_id
+	api.PUT("/cloudflare/zones/{zone_id}/dns/{record_id}", func(e *core.RequestEvent) error {
+		zoneID := e.Request.PathValue("zone_id")
+		recordID := e.Request.PathValue("record_id")
+		dm.mu.RLock()
+		token := dm.cfSettings.APIToken
+		dm.mu.RUnlock()
+
+		if token == "" {
+			return e.BadRequestError("Cloudflare API Token not configured", nil)
+		}
+
+		bodyBytes, err := io.ReadAll(e.Request.Body)
+		if err != nil {
+			return e.BadRequestError("Failed to read body", err)
+		}
+
+		client := &http.Client{Timeout: 10 * time.Second}
+		cfReq, _ := http.NewRequest("PATCH", fmt.Sprintf("https://api.cloudflare.com/client/v4/zones/%s/dns_records/%s", zoneID, recordID), bytes.NewReader(bodyBytes))
+		cfReq.Header.Set("Authorization", "Bearer "+token)
+		cfReq.Header.Set("Content-Type", "application/json")
+
+		resp, err := client.Do(cfReq)
+		if err != nil {
+			return e.BadRequestError("Failed to reach Cloudflare API: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		var result map[string]interface{}
+		_ = json.NewDecoder(resp.Body).Decode(&result)
+		return e.JSON(resp.StatusCode, result)
+	})
+
+	// DELETE /api/dockmon/cloudflare/zones/:zone_id/dns/:record_id
+	api.DELETE("/cloudflare/zones/{zone_id}/dns/{record_id}", func(e *core.RequestEvent) error {
+		zoneID := e.Request.PathValue("zone_id")
+		recordID := e.Request.PathValue("record_id")
+		dm.mu.RLock()
+		token := dm.cfSettings.APIToken
+		dm.mu.RUnlock()
+
+		if token == "" {
+			return e.BadRequestError("Cloudflare API Token not configured", nil)
+		}
+
+		client := &http.Client{Timeout: 10 * time.Second}
+		cfReq, _ := http.NewRequest("DELETE", fmt.Sprintf("https://api.cloudflare.com/client/v4/zones/%s/dns_records/%s", zoneID, recordID), nil)
+		cfReq.Header.Set("Authorization", "Bearer "+token)
+
+		resp, err := client.Do(cfReq)
+		if err != nil {
+			return e.BadRequestError("Failed to reach Cloudflare API: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		var result map[string]interface{}
+		_ = json.NewDecoder(resp.Body).Decode(&result)
+		return e.JSON(resp.StatusCode, result)
+	})
+
+	// POST /api/dockmon/cloudflare/dns/check (DNS Resolution Monitoring)
+	api.POST("/cloudflare/dns/check", func(e *core.RequestEvent) error {
+		var req struct {
+			Name            string `json:"name"`
+			ExpectedContent string `json:"expectedContent"`
+			Type            string `json:"type"`
+			Proxied         bool   `json:"proxied"`
+		}
+		if err := e.BindBody(&req); err != nil {
+			return e.BadRequestError("Invalid payload", err)
+		}
+		if req.Name == "" {
+			return e.BadRequestError("Domain name required", nil)
+		}
+
+		start := time.Now()
+		ips, err := net.LookupHost(req.Name)
+		latencyMs := time.Since(start).Milliseconds()
+
+		status := "resolved"
+		matches := false
+		message := "Resolved successfully"
+
+		if err != nil {
+			status = "failed"
+			message = err.Error()
+		} else {
+			if req.Proxied {
+				matches = true
+				message = fmt.Sprintf("Cloudflare edge proxy active (%s)", strings.Join(ips, ", "))
+			} else {
+				for _, ip := range ips {
+					if ip == req.ExpectedContent {
+						matches = true
+						break
+					}
+				}
+				if !matches && req.ExpectedContent != "" {
+					status = "mismatch"
+					message = fmt.Sprintf("Expected %s but resolved %s", req.ExpectedContent, strings.Join(ips, ", "))
+				}
+			}
+		}
+
+		return e.JSON(http.StatusOK, map[string]interface{}{
+			"name":       req.Name,
+			"resolved":   ips,
+			"latencyMs":  latencyMs,
+			"matches":    matches,
+			"status":     status,
+			"message":    message,
+			"lastTested": time.Now(),
+		})
+	})
+
+	// ---------------- DOCKER ENGINE MANAGEMENT ----------------
+
+	// GET /api/dockmon/docker/status
+	api.GET("/docker/status", func(e *core.RequestEvent) error {
+		resp, err := dockerDoRequest("GET", "/info", nil)
+		if err != nil {
+			return e.JSON(http.StatusOK, map[string]interface{}{
+				"available": false,
+				"error":     err.Error(),
+			})
+		}
+		defer resp.Body.Close()
+
+		var info map[string]interface{}
+		_ = json.NewDecoder(resp.Body).Decode(&info)
+		return e.JSON(http.StatusOK, map[string]interface{}{
+			"available":       true,
+			"containers":      info["Containers"],
+			"running":         info["ContainersRunning"],
+			"paused":          info["ContainersPaused"],
+			"stopped":         info["ContainersStopped"],
+			"images":          info["Images"],
+			"serverVersion":   info["ServerVersion"],
+			"operatingSystem": info["OperatingSystem"],
+		})
+	})
+
+	// GET /api/dockmon/docker/containers
+	api.GET("/docker/containers", func(e *core.RequestEvent) error {
+		resp, err := dockerDoRequest("GET", "/containers/json?all=true", nil)
+		if err != nil {
+			return e.BadRequestError("Failed to query Docker: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		var raw []map[string]interface{}
+		if err := json.NewDecoder(resp.Body).Decode(&raw); err != nil {
+			return e.BadRequestError("Failed to parse Docker response", err)
+		}
+
+		return e.JSON(http.StatusOK, raw)
+	})
+
+	// POST /api/dockmon/docker/containers/{id}/action
+	api.POST("/docker/containers/{id}/action", func(e *core.RequestEvent) error {
+		id := e.Request.PathValue("id")
+		var req struct {
+			Action string `json:"action"` // start, stop, restart, pause, unpause, kill, remove
+		}
+		if err := e.BindBody(&req); err != nil {
+			return e.BadRequestError("Invalid payload", err)
+		}
+
+		var resp *http.Response
+		var err error
+
+		switch req.Action {
+		case "start":
+			resp, err = dockerDoRequest("POST", fmt.Sprintf("/containers/%s/start", id), nil)
+		case "stop":
+			resp, err = dockerDoRequest("POST", fmt.Sprintf("/containers/%s/stop?t=10", id), nil)
+		case "restart":
+			resp, err = dockerDoRequest("POST", fmt.Sprintf("/containers/%s/restart?t=10", id), nil)
+		case "pause":
+			resp, err = dockerDoRequest("POST", fmt.Sprintf("/containers/%s/pause", id), nil)
+		case "unpause":
+			resp, err = dockerDoRequest("POST", fmt.Sprintf("/containers/%s/unpause", id), nil)
+		case "kill":
+			resp, err = dockerDoRequest("POST", fmt.Sprintf("/containers/%s/kill", id), nil)
+		case "remove":
+			resp, err = dockerDoRequest("DELETE", fmt.Sprintf("/containers/%s?force=true&v=true", id), nil)
+		default:
+			return e.BadRequestError("Unknown action: "+req.Action, nil)
+		}
+
+		if err != nil {
+			return e.BadRequestError("Failed to perform container action: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		if resp.StatusCode >= 400 {
+			msg, _ := io.ReadAll(resp.Body)
+			return e.BadRequestError(fmt.Sprintf("Docker error (%d): %s", resp.StatusCode, string(msg)), nil)
+		}
+
+		return e.JSON(http.StatusOK, map[string]interface{}{
+			"success": true,
+			"action":  req.Action,
+			"id":      id,
+		})
+	})
+
+	// GET /api/dockmon/docker/containers/{id}/logs
+	api.GET("/docker/containers/{id}/logs", func(e *core.RequestEvent) error {
+		id := e.Request.PathValue("id")
+		tail := e.Request.URL.Query().Get("tail")
+		if tail == "" {
+			tail = "200"
+		}
+
+		endpoint := fmt.Sprintf("/containers/%s/logs?stdout=true&stderr=true&tail=%s&timestamps=true", id, tail)
+		resp, err := dockerDoRequest("GET", endpoint, nil)
+		if err != nil {
+			return e.BadRequestError("Failed to fetch logs: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		logsText := readDockerLogs(resp.Body)
+		return e.JSON(http.StatusOK, map[string]interface{}{
+			"id":   id,
+			"logs": logsText,
+		})
+	})
+
+	// GET /api/dockmon/docker/containers/{id}/inspect
+	api.GET("/docker/containers/{id}/inspect", func(e *core.RequestEvent) error {
+		id := e.Request.PathValue("id")
+		resp, err := dockerDoRequest("GET", fmt.Sprintf("/containers/%s/json", id), nil)
+		if err != nil {
+			return e.BadRequestError("Failed to inspect container: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		var data map[string]interface{}
+		_ = json.NewDecoder(resp.Body).Decode(&data)
+		return e.JSON(http.StatusOK, data)
+	})
+
+	// ---------------- NETWORKS ----------------
+
+	// GET /api/dockmon/docker/networks
+	api.GET("/docker/networks", func(e *core.RequestEvent) error {
+		resp, err := dockerDoRequest("GET", "/networks", nil)
+		if err != nil {
+			return e.BadRequestError("Failed to list networks: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		var raw []map[string]interface{}
+		_ = json.NewDecoder(resp.Body).Decode(&raw)
+		return e.JSON(http.StatusOK, raw)
+	})
+
+	// POST /api/dockmon/docker/networks
+	api.POST("/docker/networks", func(e *core.RequestEvent) error {
+		var req struct {
+			Name   string `json:"name"`
+			Driver string `json:"driver"`
+		}
+		if err := e.BindBody(&req); err != nil {
+			return e.BadRequestError("Invalid payload", err)
+		}
+		if req.Name == "" {
+			return e.BadRequestError("Network name required", nil)
+		}
+		if req.Driver == "" {
+			req.Driver = "bridge"
+		}
+
+		payload, _ := json.Marshal(map[string]interface{}{
+			"Name":           req.Name,
+			"Driver":         req.Driver,
+			"CheckDuplicate": true,
+		})
+		resp, err := dockerDoRequest("POST", "/networks/create", bytes.NewReader(payload))
+		if err != nil {
+			return e.BadRequestError("Failed to create network: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		var data map[string]interface{}
+		_ = json.NewDecoder(resp.Body).Decode(&data)
+		return e.JSON(resp.StatusCode, data)
+	})
+
+	// DELETE /api/dockmon/docker/networks/{id}
+	api.DELETE("/docker/networks/{id}", func(e *core.RequestEvent) error {
+		id := e.Request.PathValue("id")
+		resp, err := dockerDoRequest("DELETE", fmt.Sprintf("/networks/%s", id), nil)
+		if err != nil {
+			return e.BadRequestError("Failed to delete network: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		if resp.StatusCode >= 400 {
+			msg, _ := io.ReadAll(resp.Body)
+			return e.BadRequestError(fmt.Sprintf("Failed to remove network (%d): %s", resp.StatusCode, string(msg)), nil)
+		}
+
+		return e.JSON(http.StatusOK, map[string]bool{"success": true})
+	})
+
+	// POST /api/dockmon/docker/networks/prune
+	api.POST("/docker/networks/prune", func(e *core.RequestEvent) error {
+		resp, err := dockerDoRequest("POST", "/networks/prune", nil)
+		if err != nil {
+			return e.BadRequestError("Failed to prune networks: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		var data map[string]interface{}
+		_ = json.NewDecoder(resp.Body).Decode(&data)
+		return e.JSON(http.StatusOK, data)
+	})
+
+	// ---------------- VOLUMES ----------------
+
+	// GET /api/dockmon/docker/volumes
+	api.GET("/docker/volumes", func(e *core.RequestEvent) error {
+		resp, err := dockerDoRequest("GET", "/volumes", nil)
+		if err != nil {
+			return e.BadRequestError("Failed to list volumes: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		var raw map[string]interface{}
+		_ = json.NewDecoder(resp.Body).Decode(&raw)
+		return e.JSON(http.StatusOK, raw["Volumes"])
+	})
+
+	// POST /api/dockmon/docker/volumes
+	api.POST("/docker/volumes", func(e *core.RequestEvent) error {
+		var req struct {
+			Name   string `json:"name"`
+			Driver string `json:"driver"`
+		}
+		if err := e.BindBody(&req); err != nil {
+			return e.BadRequestError("Invalid payload", err)
+		}
+		if req.Name == "" {
+			return e.BadRequestError("Volume name required", nil)
+		}
+		if req.Driver == "" {
+			req.Driver = "local"
+		}
+
+		payload, _ := json.Marshal(map[string]interface{}{
+			"Name":   req.Name,
+			"Driver": req.Driver,
+		})
+		resp, err := dockerDoRequest("POST", "/volumes/create", bytes.NewReader(payload))
+		if err != nil {
+			return e.BadRequestError("Failed to create volume: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		var data map[string]interface{}
+		_ = json.NewDecoder(resp.Body).Decode(&data)
+		return e.JSON(resp.StatusCode, data)
+	})
+
+	// DELETE /api/dockmon/docker/volumes/{name}
+	api.DELETE("/docker/volumes/{name}", func(e *core.RequestEvent) error {
+		name := e.Request.PathValue("name")
+		resp, err := dockerDoRequest("DELETE", fmt.Sprintf("/volumes/%s?force=true", name), nil)
+		if err != nil {
+			return e.BadRequestError("Failed to delete volume: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		if resp.StatusCode >= 400 {
+			msg, _ := io.ReadAll(resp.Body)
+			return e.BadRequestError(fmt.Sprintf("Failed to remove volume (%d): %s", resp.StatusCode, string(msg)), nil)
+		}
+
+		return e.JSON(http.StatusOK, map[string]bool{"success": true})
+	})
+
+	// POST /api/dockmon/docker/volumes/prune
+	api.POST("/docker/volumes/prune", func(e *core.RequestEvent) error {
+		resp, err := dockerDoRequest("POST", "/volumes/prune", nil)
+		if err != nil {
+			return e.BadRequestError("Failed to prune volumes: "+err.Error(), nil)
+		}
+		defer resp.Body.Close()
+
+		var data map[string]interface{}
+		_ = json.NewDecoder(resp.Body).Decode(&data)
+		return e.JSON(http.StatusOK, data)
 	})
 }

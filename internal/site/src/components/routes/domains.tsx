@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
 	Dialog,
 	DialogContent,
@@ -28,6 +29,7 @@ import {
 	Search,
 } from "lucide-react"
 import { CloudflareDialog } from "./cloudflare-dialog"
+import { CloudflareDNSView } from "./cloudflare-dns"
 
 export interface DomainItem {
 	id: string
@@ -149,10 +151,10 @@ export default function Domains() {
 				<div>
 					<h1 className="text-2xl font-bold tracking-tight flex items-center gap-2">
 						<Globe className="h-6 w-6 text-primary" />
-						Domains & Endpoints
+						Domains & DNS Management
 					</h1>
 					<p className="text-sm text-muted-foreground mt-1">
-						Real-time HTTP health, latency, SSL expiration monitoring, and Cloudflare integration.
+						Real-time HTTP health, latency, SSL expiration monitoring, and Cloudflare DNS management.
 					</p>
 				</div>
 				<div className="flex items-center gap-2">
@@ -170,6 +172,14 @@ export default function Domains() {
 					</Button>
 				</div>
 			</div>
+
+			<Tabs defaultValue="endpoints" className="w-full">
+				<TabsList className="grid w-full max-w-md grid-cols-2">
+					<TabsTrigger value="endpoints">HTTP & SSL Monitors</TabsTrigger>
+					<TabsTrigger value="dns">Cloudflare DNS</TabsTrigger>
+				</TabsList>
+
+				<TabsContent value="endpoints" className="space-y-6 mt-6">
 
 			{/* Stats Cards */}
 			<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -413,6 +423,12 @@ export default function Domains() {
 					</div>
 				</div>
 			)}
+				</TabsContent>
+
+				<TabsContent value="dns" className="mt-6">
+					<CloudflareDNSView onOpenConnect={() => setCfOpen(true)} />
+				</TabsContent>
+			</Tabs>
 
 			{/* Add Domain Dialog */}
 			<Dialog open={addOpen} onOpenChange={setAddOpen}>

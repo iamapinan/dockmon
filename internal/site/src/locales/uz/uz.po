@@ -226,7 +226,6 @@ msgstr "Ogohlantirishlar"
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
-#: src/components/routes/containers.tsx
 msgid "All Containers"
 msgstr "Barcha konteynerlar"
 
